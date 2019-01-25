@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeVC: UIViewController {
 
+    @IBOutlet weak var Home_nameLabel: UILabel!
     var doorStateText:String = ""
     @IBOutlet weak var doorState: UILabel!
     @IBOutlet weak var Home_Cat: UIImageView!
@@ -19,10 +21,12 @@ class HomeVC: UIViewController {
     
     
     @IBAction func controlDoorButton(_ sender: Any) {
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         doorState.text = doorStateText
         
         Home_Cat.layer.cornerRadius = Home_Cat.frame.size.width / 2
@@ -35,6 +39,20 @@ class HomeVC: UIViewController {
         Home_ScheduleButton.layer.masksToBounds = true
         Home_StatisticsButton.layer.cornerRadius = 10.0
         Home_StatisticsButton.layer.masksToBounds = true
+        
+        
+        guard let username = Auth.auth().currentUser?.displayName else { return }
+        Home_nameLabel.text = username
+
+    }
+    @IBAction func signOutTapped(_ sender: Any) {
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            performSegue(withIdentifier: "HomeToMain" , sender: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -45,6 +63,5 @@ class HomeVC: UIViewController {
             vc?.doorText = doorStateText
         }
     }
-
 }
 
