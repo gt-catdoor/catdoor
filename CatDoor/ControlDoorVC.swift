@@ -25,10 +25,9 @@ class ControlDoorVC: UIViewController {
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
-        //let okAction = UIAlertAction(title: "OK", style: .default)
-        //, handler: self.sub)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
-        //alert.addAction(okAction)
+        alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
@@ -39,6 +38,14 @@ class ControlDoorVC: UIViewController {
         unlockButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
+        
+        //Popup
+        let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     @IBAction func inOnlyButton(_ sender: Any) {
         inOnlyButton.isSelected = true
@@ -46,6 +53,14 @@ class ControlDoorVC: UIViewController {
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         outOnlyButton.isSelected = false
+        
+        //Popup
+        let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     @IBAction func outOnlyButton(_ sender: Any) {
         outOnlyButton.isSelected = true
@@ -53,6 +68,14 @@ class ControlDoorVC: UIViewController {
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
+        
+        //Popup
+        let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     @IBAction func backButton(_ sender: Any) {
@@ -102,14 +125,8 @@ class ControlDoorVC: UIViewController {
         }
     }
     
-    // If pressed OK, then go to home screen.
-//    func sub(alert: UIAlertAction!) {
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "HomeVC")
-//        self.present(vc, animated: true, completion: nil)
-//    }
-    
-
-    
-
+     //If pressed OK, then go to home screen.
+    func sub(alert: UIAlertAction!) {
+        self.performSegue(withIdentifier: "ToHome", sender: nil)
+    }
 }
