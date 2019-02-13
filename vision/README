@@ -1,0 +1,12 @@
+dependency: 
+python3
+pip3 install tensorflow
+pip3 install tensorflow-hub
+pip3 install opencv-python
+pip3 install numpy // or sudo apt-get?
+
+pyscreenshot // if needed
+
+
+
+for sprint 3, these will be all packed to executable python app.
