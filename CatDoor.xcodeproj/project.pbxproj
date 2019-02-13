@@ -14,6 +14,10 @@
 		720ECB32219A260C00559D9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 720ECB30219A260C00559D9E /* LaunchScreen.storyboard */; };
 		720ECB3C219A347000559D9E /* ControlDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720ECB3B219A347000559D9E /* ControlDoorVC.swift */; };
 		B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5236B6E21F93F11007C36CB /* AlertController.swift */; };
+		B5749CDC22021FE70093FA40 /* FindPwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5749CDB22021FE70093FA40 /* FindPwVC.swift */; };
+		B576B73D220B45BC00084156 /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576B73C220B45BC00084156 /* MenuVC.swift */; };
+		B576B741220B46E900084156 /* MenuTableViewCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576B740220B46E900084156 /* MenuTableViewCells.swift */; };
+		B576B74322124F4000084156 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576B74222124F4000084156 /* MenuOption.swift */; };
 		B5B904F421F51941004BAA71 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F321F51941004BAA71 /* LoginVC.swift */; };
 		B5B904F621F51DC5004BAA71 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F521F51DC5004BAA71 /* MainVC.swift */; };
 		B5B904F821F52102004BAA71 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F721F52102004BAA71 /* RegisterVC.swift */; };
@@ -34,6 +38,10 @@
 		720ECB33219A260C00559D9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		720ECB3B219A347000559D9E /* ControlDoorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlDoorVC.swift; sourceTree = "<group>"; };
 		B5236B6E21F93F11007C36CB /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		B5749CDB22021FE70093FA40 /* FindPwVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwVC.swift; sourceTree = "<group>"; };
+		B576B73C220B45BC00084156 /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		B576B740220B46E900084156 /* MenuTableViewCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCells.swift; sourceTree = "<group>"; };
+		B576B74222124F4000084156 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
 		B5B904F321F51941004BAA71 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B5B904F521F51DC5004BAA71 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		B5B904F721F52102004BAA71 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -85,10 +93,14 @@
 				720ECB27219A260A00559D9E /* AppDelegate.swift */,
 				B5B904F521F51DC5004BAA71 /* MainVC.swift */,
 				B5B904F321F51941004BAA71 /* LoginVC.swift */,
+				B5749CDB22021FE70093FA40 /* FindPwVC.swift */,
 				B5B904F721F52102004BAA71 /* RegisterVC.swift */,
 				B5236B6E21F93F11007C36CB /* AlertController.swift */,
 				720ECB29219A260A00559D9E /* HomeVC.swift */,
 				720ECB3B219A347000559D9E /* ControlDoorVC.swift */,
+				B576B73C220B45BC00084156 /* MenuVC.swift */,
+				B576B740220B46E900084156 /* MenuTableViewCells.swift */,
+				B576B74222124F4000084156 /* MenuOption.swift */,
 				720ECB2B219A260A00559D9E /* Main.storyboard */,
 				720ECB2E219A260C00559D9E /* Assets.xcassets */,
 				720ECB30219A260C00559D9E /* LaunchScreen.storyboard */,
@@ -140,6 +152,7 @@
 				TargetAttributes = {
 					720ECB23219A260A00559D9E = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -187,6 +200,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CatDoor/Pods-CatDoor-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -195,6 +209,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,8 +248,12 @@
 			files = (
 				720ECB2A219A260A00559D9E /* HomeVC.swift in Sources */,
 				B5B904F621F51DC5004BAA71 /* MainVC.swift in Sources */,
+				B5749CDC22021FE70093FA40 /* FindPwVC.swift in Sources */,
 				720ECB3C219A347000559D9E /* ControlDoorVC.swift in Sources */,
+				B576B741220B46E900084156 /* MenuTableViewCells.swift in Sources */,
 				B5B904F821F52102004BAA71 /* RegisterVC.swift in Sources */,
+				B576B73D220B45BC00084156 /* MenuVC.swift in Sources */,
+				B576B74322124F4000084156 /* MenuOption.swift in Sources */,
 				B5B904F421F51941004BAA71 /* LoginVC.swift in Sources */,
 				B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */,
 				720ECB28219A260A00559D9E /* AppDelegate.swift in Sources */,
@@ -384,6 +403,7 @@
 			baseConfigurationReference = 35303BBED0C876D78EBD2C75 /* Pods-CatDoor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CatDoor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -392,6 +412,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.samanthahott.CatDoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CatDoor/CatDoor-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -402,6 +424,7 @@
 			baseConfigurationReference = 57058584A1BBF2872AD4C4DF /* Pods-CatDoor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CatDoor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -410,6 +433,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.samanthahott.CatDoor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CatDoor/CatDoor-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

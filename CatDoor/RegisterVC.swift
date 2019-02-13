@@ -18,16 +18,56 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var Register_EmailTF: UITextField!
     @IBOutlet weak var Register_PhoneTF: UITextField!
     @IBOutlet weak var Register_SubmitButton: UIButton!
+    @IBOutlet weak var Register_AddDoor: UILabel!
+    @IBOutlet weak var Register_NumOfDoor: UILabel!
+
+    var addDoorStr: String? = ""
+    var numOfDoorStr: String? = ""
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Register_SubmitButton.layer.cornerRadius = 10.0
         Register_SubmitButton.layer.masksToBounds = true
+        Register_AddDoor.text = addDoorStr
+        Register_NumOfDoor.text = numOfDoorStr
+    }
+    
+    //Add door button action
+    @IBAction func addDoorTapped(_ sender: Any) {
+        let alertCT = UIAlertController(title: "Please add your door.", message:nil, preferredStyle: .alert)
+        alertCT.addTextField { (door: UITextField!) -> Void in door.placeholder = "Enter your door."
+        }
+        let okAc = UIAlertAction(title: "OK", style: .default) { (alert: UIAlertAction!) -> Void in
+            let addDoor = alertCT.textFields![0]
+            self.Register_AddDoor.text = addDoor.text
+            alertCT.dismiss(animated: true, completion: nil)
+        }
+        let cancelAc = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertCT.addAction(okAc)
+        alertCT.addAction(cancelAc)
+        present(alertCT, animated: true, completion: nil)
+    }
+    
+    //number of added door action
+    @IBAction func numberOfDoorTapped(_ sender: Any) {
+        let alertND = UIAlertController(title: "How many number of added door?", message:nil, preferredStyle: .alert)
+        alertND.addTextField { (door: UITextField!) -> Void in door.placeholder = "Enter number of door."
+        }
+        let okAc = UIAlertAction(title: "OK", style: .default) { (alert: UIAlertAction!) -> Void in
+            let numberDoor = alertND.textFields![0]
+            self.Register_NumOfDoor.text = numberDoor.text
+            alertND.dismiss(animated: true, completion: nil)
+        }
+        let cancelAc = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertND.addAction(okAc)
+        alertND.addAction(cancelAc)
+        present(alertND, animated: true, completion: nil)
     }
     
     
-    
+    // Register button action
     @IBAction func buttonTapped(_ sender: Any) {
         guard let username = Register_UsernameTF.text,
             username != "",
@@ -57,7 +97,6 @@ class RegisterVC: UIViewController {
                     AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
                     return
                 }
-                
                 self.performSegue(withIdentifier: "RegisterToLogin", sender: nil)
             })
         }
