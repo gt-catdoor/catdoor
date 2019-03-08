@@ -9,4 +9,4 @@ pyscreenshot // if needed
 
 
 
-for sprint 3, these will be all packed to executable python app.
+run mylabelimage.py (currently support only webcam)

@@ -9,158 +9,70 @@ import numpy as np
 import tensorflow as tf
 import cv2
 import pyscreenshot as ImageGrab
+from tkinter import *
+import threading
+from PIL import Image
+from PIL import ImageTk
 
 
-def load_graph(model_file):
-  graph = tf.Graph()
-  graph_def = tf.GraphDef()
+class gui:
+  def __init__(self, w):
+    image_label = None
+    vc = visionCore(image_label)
+    start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 1, column = 0, columnspan = 1)
+    start_vision_button = Button(w, text="Start", command = vc.runVision).grid(row=1,column=1, columnspan=1,pady = 5)
+    end_vision_button = Button(w, text="End", command = vc.endVision).grid(row=1,column=2, columnspan=1,pady = 5)
 
-  with open(model_file, "rb") as f:
-    graph_def.ParseFromString(f.read())
-  with graph.as_default():
-    tf.import_graph_def(graph_def)
+class visionCore:
+  def __init__(self, image_label):
+    self.stop = threading.Event()
+    self.t = threading.Thread(target=self._runVision)
+    self.image_label = image_label
 
-  return graph
+  def load_graph(self, model_file):
+    graph = tf.Graph()
+    graph_def = tf.GraphDef()
 
+    with open(model_file, "rb") as f:
+      graph_def.ParseFromString(f.read())
+    with graph.as_default():
+      tf.import_graph_def(graph_def)
 
-def read_tensor_from_image_file(file_name,
-                                input_height=299,
-                                input_width=299,
-                                input_mean=0,
-                                input_std=255):
-  input_name = "file_reader"
-  output_name = "normalized"
-  file_reader = tf.read_file(file_name, input_name)
-  if file_name.endswith(".png"):
-    image_reader = tf.image.decode_png(
-        file_reader, channels=3, name="png_reader")
-  elif file_name.endswith(".gif"):
-    image_reader = tf.squeeze(
-        tf.image.decode_gif(file_reader, name="gif_reader"))
-  elif file_name.endswith(".bmp"):
-    image_reader = tf.image.decode_bmp(file_reader, name="bmp_reader")
-  else:
-    image_reader = tf.image.decode_jpeg(
-        file_reader, channels=3, name="jpeg_reader")
-  float_caster = tf.cast(image_reader, tf.float32)
-  dims_expander = tf.expand_dims(float_caster, 0)
-  resized = tf.image.resize_bilinear(dims_expander, [input_height, input_width])
-  normalized = tf.divide(tf.subtract(resized, [input_mean]), [input_std])
-  sess = tf.Session()
-  result = sess.run(normalized)
+    return graph
 
-  return result
+  def load_labels(self, label_file):
+    label = []
+    proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
+    for l in proto_as_ascii_lines:
+      label.append(l.rstrip())
+    return label
 
+  def runVision(self):
+    if not self.t.is_alive():
+      print ("run vision clicked!!")
+      self.stop.clear()
+      self.t = threading.Thread(target=self._runVision)
+      self.t.start()
 
-def load_labels(label_file):
-  label = []
-  proto_as_ascii_lines = tf.gfile.GFile(label_file).readlines()
-  for l in proto_as_ascii_lines:
-    label.append(l.rstrip())
-  return label
+  def endVision(self):
+    self.stop.set()
 
 
-if __name__ == "__main__":
-  # file_name = "tensorflow/examples/label_image/data/grace_hopper.jpg"
-  # model_file = \
-  #   "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
-  # label_file = "tensorflow/examples/label_image/data/imagenet_slim_labels.txt"
-  # input_height = 299
-  # input_width = 299
-  # input_mean = 0
-  # input_std = 255
-  # input_layer = "input"
-  # output_layer = "InceptionV3/Predictions/Reshape_1"
-
-  # parser = argparse.ArgumentParser()
-  # parser.add_argument("--image", help="image to be processed")
-  # parser.add_argument("--graph", help="graph/model to be executed")
-  # parser.add_argument("--labels", help="name of file containing labels")
-  # parser.add_argument("--input_height", type=int, help="input height")
-  # parser.add_argument("--input_width", type=int, help="input width")
-  # parser.add_argument("--input_mean", type=int, help="input mean")
-  # parser.add_argument("--input_std", type=int, help="input std")
-  # parser.add_argument("--input_layer", help="name of input layer")
-  # parser.add_argument("--output_layer", help="name of output layer")
-  # args = parser.parse_args()
-
-  # if args.graph:
-  #   model_file = args.graph
-  # if args.image:
-  #   file_name = args.image
-  # if args.labels:
-  #   label_file = args.labels
-  # if args.input_height:
-  #   input_height = args.input_height
-  # if args.input_width:
-  #   input_width = args.input_width
-  # if args.input_mean:
-  #   input_mean = args.input_mean
-  # if args.input_std:
-  #   input_std = args.input_std
-  # if args.input_layer:
-  #   input_layer = args.input_layer
-  # if args.output_layer:
-  #   output_layer = args.output_layer
-
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-s", "--screen", action='store_const', const=1, default=0)
-  parser.add_argument("-w", "--webcam", action='store_const', const=1, default=0)
-
-  args = parser.parse_args()
-
-  label_file = "./tmp/output_labels.txt"
-  model_file = "./tmp/output_graph.pb"
-  input_layer = "Placeholder"
-  output_layer = "final_result"
-  input_width = 224
-  input_height = 224
-  input_mean = 0
-  input_std = 255
-  graph = load_graph(model_file)
- 
-  if(args.screen):
+  def _runVision(self):
+    label_file = "./tmp/v2/output_labels.txt"
+    model_file = "./tmp/v2/output_graph.pb"
+    input_layer = "Placeholder"
+    output_layer = "final_result"
+    input_width = 224
+    input_height = 224
+    input_mean = 0
+    input_std = 255
+    graph = self.load_graph(model_file)
+   
     cap = cv2.VideoCapture(0)
     cap.set(cv2.CAP_PROP_FPS, 1) 
 
-    while(True):
-      print("\n\n\n")
-      image_reader = ImageGrab.grab([500, 500, 1000, 1000])
-
-      float_caster = tf.cast(image_reader, tf.float32)
-      dims_expander = tf.expand_dims(float_caster, 0)
-      resized = tf.image.resize_bilinear(dims_expander, [input_height, input_width])
-      normalized = tf.divide(tf.subtract(resized, [input_mean]), [input_std])
-      sess = tf.Session()
-      result = sess.run(normalized)
-
-      t = result
-
-      input_name = "import/" + input_layer
-      output_name = "import/" + output_layer
-      input_operation = graph.get_operation_by_name(input_name)
-      output_operation = graph.get_operation_by_name(output_name)
-
-      with tf.Session(graph=graph) as sess:
-        results = sess.run(output_operation.outputs[0], {
-            input_operation.outputs[0]: t
-        })
-      results = np.squeeze(results)
-
-      top_k = results.argsort()[-5:][::-1]
-      labels = load_labels(label_file)
-      for i in top_k:
-        print(labels[i], results[i])
-
-      img_np = np.array(image_reader)
-      image = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
-      cv2.imshow('image', image)
-      cv2.waitKey(500)  
-  elif(args.webcam):
-    cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_FPS, 1) 
-
-    while(True):
+    while not self.stop.is_set():
       print("\n\n\n")
       # cap.set(3, 224)
       # cap.set(4, 224)
@@ -187,12 +99,30 @@ if __name__ == "__main__":
       results = np.squeeze(results)
 
       top_k = results.argsort()[-5:][::-1]
-      labels = load_labels(label_file)
+      labels = self.load_labels(label_file)
       for i in top_k:
         print(labels[i], results[i])
 
       img_np = np.array(image_reader)
       image = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
+      image = Image.fromarray(image)
+      image = ImageTk.PhotoImage(image)
        # cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-      cv2.imshow('image', image)
-      cv2.waitKey(5000)  
+      # cv2.imshow('image', image)
+      if self.image_label is None:
+        self.image_label = Label(image=image)
+        self.image_label.image = image
+        self.image_label.grid(row = 0, column = 0, columnspan = 1)
+      else:
+        self.image_label.configure(image=image)
+        self.image_label.image = image  
+      cv2.waitKey(500)  
+      
+    cap.release()
+    cv2.destroyAllWindows()
+        
+
+
+tk = Tk()
+gui = gui(tk)
+tk.mainloop()
