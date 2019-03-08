@@ -9,18 +9,41 @@
 import UIKit
 import Firebase
 
-class LoginVC: UIViewController {
+
+class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var Login_LoginButton: UIButton!
     @IBOutlet weak var Login_RegisterButton: UIButton!
     @IBOutlet weak var Login_emailTF: UITextField!
     @IBOutlet weak var Login_pwTF: UITextField!
+    @IBOutlet weak var ScrollView: UIScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         Login_LoginButton.layer.cornerRadius = 10.0
         Login_LoginButton.layer.masksToBounds = true
+        Login_pwTF.delegate = self
+        Login_emailTF.delegate = self
+        
+        self.HideKeyboard()
+        
     }
+    
+    // Hide Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
     
     @IBAction func onLoginTapped(_ sender: Any) {
         guard let email = Login_emailTF.text,
@@ -42,6 +65,18 @@ class LoginVC: UIViewController {
             }            
         }
     }
-    
-    
 }
+
+//Hide Keyboard
+extension UIViewController {
+    func HideKeyboard() {
+        let Tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DismissKeyboard))
+        view.addGestureRecognizer(Tap)
+    
+    }
+    @objc func DismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+

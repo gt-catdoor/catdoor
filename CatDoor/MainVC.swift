@@ -21,8 +21,13 @@ class MainVC: UIViewController {
         Main_RegisterButton.layer.cornerRadius = 10.0
         Main_RegisterButton.layer.masksToBounds = true
         
+    }
+    
+    // Hide Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
 }
