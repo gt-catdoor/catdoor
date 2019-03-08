@@ -8,9 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
-class RegisterVC: UIViewController {
+class RegisterVC: UIViewController, UITextFieldDelegate {
     
+    var ref: DatabaseReference?
+
     @IBOutlet weak var Register_UsernameTF: UITextField!
     @IBOutlet weak var Register_PwTF: UITextField!
     @IBOutlet weak var Register_PwCheckTF: UITextField!
@@ -28,10 +31,33 @@ class RegisterVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.HideKeyboard()
         Register_SubmitButton.layer.cornerRadius = 10.0
         Register_SubmitButton.layer.masksToBounds = true
         Register_AddDoor.text = addDoorStr
         Register_NumOfDoor.text = numOfDoorStr
+        Register_UsernameTF.delegate = self
+        Register_PwTF.delegate = self
+        Register_EmailTF.delegate = self
+        Register_PwCheckTF.delegate = self
+        Register_PhoneTF.delegate = self
+        Register_CatTF.delegate = self
+    
+
+    }
+    
+    // Hide Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    
+    // Hide keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //Add door button action
@@ -66,10 +92,17 @@ class RegisterVC: UIViewController {
         present(alertND, animated: true, completion: nil)
     }
     
+    // Hide keyboard
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     // Register button action
     @IBAction func buttonTapped(_ sender: Any) {
-        guard let username = Register_UsernameTF.text,
+        guard
+
+            
+            let username = Register_UsernameTF.text,
             username != "",
             let password = Register_PwTF.text,
             password != "",
@@ -82,13 +115,17 @@ class RegisterVC: UIViewController {
                 return
         }
         
+        
+        
+        
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             guard error == nil else {
                 AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
                 return
             }
-            
+           
             guard let user = authResult?.user else { return }
+            
             
             let changeRequest = user.createProfileChangeRequest()
             changeRequest.displayName = username
@@ -97,8 +134,13 @@ class RegisterVC: UIViewController {
                     AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
                     return
                 }
+                
+                //self.ref = Database.database().reference()
+                //self.ref?.child("userInfo").childByAutoId().setValue(<#T##value: Any?##Any?#>)
+                
                 self.performSegue(withIdentifier: "RegisterToLogin", sender: nil)
             })
         }
     }
 }
+
