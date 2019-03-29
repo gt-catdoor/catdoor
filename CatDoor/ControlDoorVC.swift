@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class ControlDoorVC: UIViewController {
+    //FirebaseApp.configure()
+    var ref: DatabaseReference!
     @IBOutlet weak var unlockButton: UIButton!
     @IBOutlet weak var lockDownButton: UIButton!
     @IBOutlet weak var inOnlyButton: UIButton!
@@ -22,6 +26,7 @@ class ControlDoorVC: UIViewController {
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
+        ref.child("CatDoor").setValue(["doorstatus":"unlocked"])
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
@@ -84,6 +89,8 @@ class ControlDoorVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+
         if (doorText == "Lets Cats out Only") {
             unlockButton.isSelected = false
             lockDownButton.isSelected = false
