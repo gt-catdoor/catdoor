@@ -32,13 +32,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     // Hide Navigation Bar
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    
-    
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -72,7 +68,6 @@ extension UIViewController {
     func HideKeyboard() {
         let Tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(DismissKeyboard))
         view.addGestureRecognizer(Tap)
-    
     }
     @objc func DismissKeyboard() {
         view.endEditing(true)

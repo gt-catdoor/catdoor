@@ -28,7 +28,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     var numOfDoorStr: String? = ""
 
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.HideKeyboard()
@@ -42,7 +41,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         Register_PwCheckTF.delegate = self
         Register_PhoneTF.delegate = self
         Register_CatTF.delegate = self
-    
+        
+        ref = Database.database().reference()
 
     }
     
@@ -101,7 +101,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBAction func buttonTapped(_ sender: Any) {
         guard
 
-            
             let username = Register_UsernameTF.text,
             username != "",
             let password = Register_PwTF.text,
