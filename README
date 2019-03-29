@@ -1,0 +1,63 @@
+
+New feature: synchronization of capturing and detecting.
+(In former version, I have used customed thread, it was not sync, so capturing was unstable.)
+(here, I use Tk's after function. ex) self.w.after(100, self.update).
+
+-> self.update(): after calculation for detection is done, program shows an image on screen, and 100ms delay (less than 	this might break the screen). 
+-> FPS is around 1.6 (slow, but cannot reduce this because capture is done "after calculation", capturing and calculation is synchronized.)
+
+
+
+
+Trainig
+dataset: based on pretrained, tensorflow hub's model.
+label | # of images
+cat 	1000
+dog		100
+fox		40
+racoon 	194
+others 	1500
+
+
+
+
+
+retraining.
+
+retrain.py : python3 retrain.py --image_dir ../hub/images/samples/ --tfhub_module https://tfhub.dev/google/imagenet/mobilenet_v2_100_224/feature_vector/2
+
+ref: https://www.tensorflow.org/hub/tutorials/image_retraining
+
+
+folder structures
+
+
+	./sameples
+		/cat
+		/dog
+		/fox
+		/racoon
+		/others
+
+-> after training done, the model (output_graph.pb, checkpoint, retrain~~, output_labels.txt)
+ are created in /tmp/ folder. (not ./tmp/)
+
+-> don't forget to move these thing, if labtop is rebooted, data will be lost.
+
+
+
+
+
+
+
+labeling (using created model)
+
+
+label_image.py: python3 label_image.py \
+--graph=/tmp/output_graph.pb --labels=/tmp/output_labels.txt \
+--input_layer=Placeholder \
+--output_layer=final_result \
+--input_height=224 --input_width=224 \
+--image=$HOME/flower_photos/daisy/21652746_cc379e0eea_m.jpg
+
+

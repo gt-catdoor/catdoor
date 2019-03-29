@@ -13,21 +13,145 @@ from tkinter import *
 import threading
 from PIL import Image
 from PIL import ImageTk
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
+
+# # Use the application default credentials
+# cred = credentials.ApplicationDefault()
+# firebase_admin.initialize_app(cred, {
+#   'projectId': "catdoor-642e4",
+# })
+
+# Use a service account
+
+
+
+
 
 
 class gui:
-  def __init__(self, w):
-    image_label = None
-    vc = visionCore(image_label)
-    start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 1, column = 0, columnspan = 1)
-    start_vision_button = Button(w, text="Start", command = vc.runVision).grid(row=1,column=1, columnspan=1,pady = 5)
-    end_vision_button = Button(w, text="End", command = vc.endVision).grid(row=1,column=2, columnspan=1,pady = 5)
 
-class visionCore:
-  def __init__(self, image_label):
-    self.stop = threading.Event()
-    self.t = threading.Thread(target=self._runVision)
-    self.image_label = image_label
+  def __init__(self, w, doc_ref):
+    self.w = w
+    self.cap = None
+    self.image_label = None
+    self.alreadyrunning = False
+    self.img_str = StringVar()
+    image_result_label = Label(w, textvariable=self.img_str, width=30, height=20).grid(row=0, column=1)
+    # vc = visionCore(image_label, img_str, doc_ref)
+    start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 1, column = 0, columnspan = 1)
+    start_vision_button = Button(w, text="Start", command = self.updateinit).grid(row=1,column=1, columnspan=1,pady = 5)
+    end_vision_button = Button(w, text="End", command = self.terminate).grid(row=1,column=2, columnspan=1,pady = 5)
+    # self.canvas = Canvas(w, width = 700, height = 500)
+    # self.canvas.grid(row=0,column=0)
+    # self.canvas.create_image(0, 0, image = self.photo, anchor = tkinter.NW)
+    # self.canvas.itemconfig(self.image_on_canvas, image = ...)
+    # label_file = None
+    # model_file = None
+    # input_layer = None
+    # output_layer = None
+    # input_width= None
+    
+
+    # self.updateinit()
+
+
+  def updateinit(self):
+    if not self.alreadyrunning:
+      self.label_file = "./tmp/v2/output_labels.txt"
+      model_file = "./tmp/v2/output_graph.pb"
+      input_layer = "Placeholder"
+      output_layer = "final_result"
+      self.input_width = 224
+      self.input_height = 224
+      self.input_mean = 0
+      self.input_std = 255
+      self.graph = self.load_graph(model_file)
+
+      self.cap = cv2.VideoCapture(0)
+      self.cap.set(cv2.CAP_PROP_FPS, 1) 
+      self.current_label = ""
+      self.new_label = ""
+
+
+      input_name = "import/" + input_layer
+      output_name = "import/" + output_layer
+      self.input_operation = self.graph.get_operation_by_name(input_name)
+      self.output_operation = self.graph.get_operation_by_name(output_name)
+      self.alreadyrunning = True
+      self.update()
+
+
+  def update(self):
+    ret, image_reader = self.cap.read()
+    # print(ret)
+    if ret:
+      float_caster = tf.cast(image_reader, tf.float32)
+      dims_expander = tf.expand_dims(float_caster, 0)
+      resized = tf.image.resize_bilinear(dims_expander, [self.input_height, self.input_width])
+      normalized = tf.divide(tf.subtract(resized, [self.input_mean]), [self.input_std])
+      
+      sess = tf.Session()
+      result = sess.run(normalized)
+
+      t = result
+
+      with tf.Session(graph=self.graph) as sess:
+        results = sess.run(self.output_operation.outputs[0], {
+            self.input_operation.outputs[0]: t
+        })
+      results = np.squeeze(results)
+
+      top_k = results.argsort()[-5:][::-1]
+      labels = self.load_labels(self.label_file)
+      for idx, sel in enumerate(top_k):
+        # print(labels[i], results[i])
+        if idx == 0:
+          self.img_str.set(labels[sel] + ": " + str(results[sel]) + "\n")
+        else:
+          self.img_str.set(self.img_str.get() + labels[sel] + ": " + str(results[sel]) + "\n")
+
+      # print(top_k) ## [3 4 0 2 1]
+      # print(labels[top_k[0]]) // this is top label
+
+      new_label = labels[top_k[0]]
+
+      if self.current_label != self.new_label:
+        if self.new_label == "cat":
+          self.doc_ref.update({
+            "cat_detected": True,
+            "intruder_detected": False
+          })
+        elif self.new_label == "others":
+          self.doc_ref.update({
+            "cat_detected": False,
+            "intruder_detected": True
+          })
+
+      self.current_label = self.new_label
+
+
+      img_np = np.array(image_reader)
+      image = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
+      image = Image.fromarray(image)
+      image = image.resize((700, 500), Image.ANTIALIAS)
+      image = ImageTk.PhotoImage(image)
+      if self.image_label is None:
+        self.image_label = Label(image=image)
+        self.image_label.image = image
+        self.image_label.grid(row = 0, column = 0, columnspan = 1)
+      else:
+        self.image_label.configure(image=image)
+        self.image_label.image = image  
+    self.w.after(100, self.update)    
+      
+
+  def terminate(self):
+    self.cap.release()
+    cv2.destroyAllWindows()
+    self.alreadyrunning = False
+
 
   def load_graph(self, model_file):
     graph = tf.Graph()
@@ -47,82 +171,39 @@ class visionCore:
       label.append(l.rstrip())
     return label
 
-  def runVision(self):
-    if not self.t.is_alive():
-      print ("run vision clicked!!")
-      self.stop.clear()
-      self.t = threading.Thread(target=self._runVision)
-      self.t.start()
+     
 
-  def endVision(self):
-    self.stop.set()
+cred = credentials.Certificate('serviceaccount.json')
+firebase_admin.initialize_app(cred)
+
+db = firestore.client()
+
+catdoor_ref = db.collection(u'CatDoor')
+docs = catdoor_ref.get()
+
+doc_id = "data"
+
+# for doc in docs:
+#   doc_id = doc.id
+#   print(u'{} => {}'.format(doc.id, doc.to_dict()))
 
 
-  def _runVision(self):
-    label_file = "./tmp/v2/output_labels.txt"
-    model_file = "./tmp/v2/output_graph.pb"
-    input_layer = "Placeholder"
-    output_layer = "final_result"
-    input_width = 224
-    input_height = 224
-    input_mean = 0
-    input_std = 255
-    graph = self.load_graph(model_file)
-   
-    cap = cv2.VideoCapture(0)
-    cap.set(cv2.CAP_PROP_FPS, 1) 
+def on_snapshot(doc_snapshot, changes, read_time):
+  for doc in doc_snapshot:
+    print(u'Received document snapshot: {}'.format(doc.id))
+    print(doc.to_dict())
 
-    while not self.stop.is_set():
-      print("\n\n\n")
-      # cap.set(3, 224)
-      # cap.set(4, 224)
-      ret, image_reader = cap.read()
 
-      float_caster = tf.cast(image_reader, tf.float32)
-      dims_expander = tf.expand_dims(float_caster, 0)
-      resized = tf.image.resize_bilinear(dims_expander, [input_height, input_width])
-      normalized = tf.divide(tf.subtract(resized, [input_mean]), [input_std])
-      sess = tf.Session()
-      result = sess.run(normalized)
+doc_ref = db.collection(u'CatDoor').document(doc_id)
 
-      t = result
+# Watch the document
 
-      input_name = "import/" + input_layer
-      output_name = "import/" + output_layer
-      input_operation = graph.get_operation_by_name(input_name)
-      output_operation = graph.get_operation_by_name(output_name)
+doc_watch = doc_ref.on_snapshot(on_snapshot)
 
-      with tf.Session(graph=graph) as sess:
-        results = sess.run(output_operation.outputs[0], {
-            input_operation.outputs[0]: t
-        })
-      results = np.squeeze(results)
-
-      top_k = results.argsort()[-5:][::-1]
-      labels = self.load_labels(label_file)
-      for i in top_k:
-        print(labels[i], results[i])
-
-      img_np = np.array(image_reader)
-      image = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
-      image = Image.fromarray(image)
-      image = ImageTk.PhotoImage(image)
-       # cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
-      # cv2.imshow('image', image)
-      if self.image_label is None:
-        self.image_label = Label(image=image)
-        self.image_label.image = image
-        self.image_label.grid(row = 0, column = 0, columnspan = 1)
-      else:
-        self.image_label.configure(image=image)
-        self.image_label.image = image  
-      cv2.waitKey(500)  
-      
-    cap.release()
-    cv2.destroyAllWindows()
-        
 
 
 tk = Tk()
-gui = gui(tk)
+gui = gui(tk, doc_ref)
 tk.mainloop()
+
+
