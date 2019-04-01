@@ -34,13 +34,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 
-    
+    // login button action
     @IBAction func onLoginTapped(_ sender: Any) {
         guard let email = Login_emailTF.text,
         email != "",

@@ -21,6 +21,7 @@ class SettingTableView: UITableViewController {
         
     }
     
+    // logout button action.
     @IBAction func setting_logout(_ sender: Any) {
         let firebaseAuth = Auth.auth()
         do {

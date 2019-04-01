@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import FirebaseFirestore
+
 
 class EditCatVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+    let db = Firestore.firestore()
     
     var number = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var picker = UIPickerView()

@@ -8,12 +8,11 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
+import FirebaseFirestore
 
 class RegisterVC: UIViewController, UITextFieldDelegate {
+    let db = Firestore.firestore()
     
-    var ref: DatabaseReference?
-
     @IBOutlet weak var Register_UsernameTF: UITextField!
     @IBOutlet weak var Register_PwTF: UITextField!
     @IBOutlet weak var Register_PwCheckTF: UITextField!
@@ -42,7 +41,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         Register_PhoneTF.delegate = self
         Register_CatTF.delegate = self
         
-        ref = Database.database().reference()
 
     }
     
@@ -115,8 +113,6 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         }
         
         
-        
-        
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             guard error == nil else {
                 AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
@@ -133,9 +129,13 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
                     return
                 }
-                
-                //self.ref = Database.database().reference()
-                //self.ref?.child("userInfo").childByAutoId().setValue(<#T##value: Any?##Any?#>)
+                self.db.collection("UserInfo").addDocument(data: [
+                    "username": self.Register_UsernameTF.text,
+                    "numberOfcat": self.Register_CatTF.text,
+                    "email": self.Register_EmailTF.text,
+                    "phone": self.Register_PhoneTF.text,
+                    "addDoor": self.Register_AddDoor.text,
+                    "numberOfdoor": self.Register_NumOfDoor.text])
                 
                 self.performSegue(withIdentifier: "RegisterToLogin", sender: nil)
             })

@@ -8,8 +8,12 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
+
 
 class AddDoorVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
+    let db = Firestore.firestore()
+
     
     var number = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
     var picker = UIPickerView()
@@ -26,11 +30,14 @@ class AddDoorVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         createPickerView()
         dissmissPickerView()
         
-        
         submitBTN.layer.cornerRadius = 10.0
         submitBTN.layer.masksToBounds = true
         
+       
+
     }
+    
+    
     
     
     // Picker View
@@ -72,8 +79,21 @@ class AddDoorVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         view.endEditing(true)
     }
     
-    
+    @IBAction func submit_Tapped(_ sender: Any) {
+        
+        guard let userUid = Auth.auth().currentUser?.uid else { return }
 
-    
-
+        let oldDoor = db.collection("UserInfo").document(userUid)
+        
+        oldDoor.updateData(["numberOfdoor": self.addDoorTF.text])
+        { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+                self.performSegue(withIdentifier: "EditDoorToSetting", sender: nil)
+                
+            }
+        }
+    }
 }
