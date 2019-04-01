@@ -8,11 +8,10 @@
 
 import UIKit
 import Firebase
-import FirebaseDatabase
+import FirebaseFirestore
 
 class ControlDoorVC: UIViewController {
-    //FirebaseApp.configure()
-    var ref: DatabaseReference!
+    let db = Firestore.firestore()
     @IBOutlet weak var unlockButton: UIButton!
     @IBOutlet weak var lockDownButton: UIButton!
     @IBOutlet weak var inOnlyButton: UIButton!
@@ -20,14 +19,14 @@ class ControlDoorVC: UIViewController {
     
     var doorText:String = ""
     
+    // unlock button action
     @IBAction func unlockButton(_ sender: UIButton) {
         unlockButton.isSelected = true
         doorText = "Unlocked"
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
-        ref.child("CatDoor").setValue(["doorstatus":"unlocked"])
-        
+        db.collection("CatDoor").document("data").updateData(["doorstatus":"unlocked"])
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
         let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
@@ -37,12 +36,14 @@ class ControlDoorVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // lock button action
     @IBAction func lockDownButton(_ sender: Any) {
         lockDownButton.isSelected = true
         doorText = "Locked down"
         unlockButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
+        db.collection("CatDoor").document("data").updateData(["doorstatus":"locked"])
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
@@ -52,12 +53,15 @@ class ControlDoorVC: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    // in only button action
     @IBAction func inOnlyButton(_ sender: Any) {
         inOnlyButton.isSelected = true
         doorText = "Lets Cats in Only"
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         outOnlyButton.isSelected = false
+        db.collection("CatDoor").document("data").updateData(["doorstatus":"inOnly"])
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
@@ -67,13 +71,16 @@ class ControlDoorVC: UIViewController {
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    //out only button action
     @IBAction func outOnlyButton(_ sender: Any) {
         outOnlyButton.isSelected = true
         doorText = "Lets Cats out Only"
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
-        
+        db.collection("CatDoor").document("data").updateData(["doorstatus":"outOnly"])
+
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
         let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
@@ -83,13 +90,10 @@ class ControlDoorVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func backButton(_ sender: Any) {
-        
-    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
 
         if (doorText == "Lets Cats out Only") {
             unlockButton.isSelected = false
@@ -121,7 +125,7 @@ class ControlDoorVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    
+    // door status messege to home screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.destination is HomeVC
