@@ -10,9 +10,11 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import FirebaseStorage
+import FirebaseFirestore
 
 class HomeVC: UIViewController {
-
+    let db = Firestore.firestore()
+    
     @IBOutlet weak var Home_nameLabel: UILabel!
     var doorStateText:String = "Not Set"
     @IBOutlet weak var doorState: UILabel!
@@ -21,11 +23,15 @@ class HomeVC: UIViewController {
     @IBOutlet weak var Home_ControlButton: UIButton!
     @IBOutlet weak var Home_ScheduleButton: UIButton!
     @IBOutlet weak var Home_StatisticsButton: UIButton!
+    @IBOutlet weak var Home_CatName: UILabel!
     
     //var menu_vc : MenuVC!
     var selectedImage: UIImage?
     let picker = UIImagePickerController()
     
+    var imageReference: StorageReference {
+        return Storage.storage().reference().child("image")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +54,64 @@ class HomeVC: UIViewController {
         Home_StatisticsButton.layer.cornerRadius = 10.0
         Home_StatisticsButton.layer.masksToBounds = true
         
-        guard let username = Auth.auth().currentUser?.displayName else { return }
-        Home_nameLabel.text = username
-
-
+        // Display username
+        db.collection("UserInfo").whereField("email", isEqualTo: (Auth.auth().currentUser?.email)!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print(err)
+            } else {
+                for document in querySnapshot!.documents {
+                    let username = document.data()["username"] as? String
+                    self.Home_nameLabel.text = username
+                }
+            }
+        }
+        
+        // Display cat name
+        db.collection("UserInfo").whereField("email", isEqualTo: (Auth.auth().currentUser?.email)!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print(err)
+            } else {
+                for document in querySnapshot!.documents {
+                    let catname = document.data()["catName"] as? String
+                    self.Home_CatName.text = catname
+                }
+            }
+        }
+        
         picker.delegate = self
     }
     
     
+    
+    // Name of cat button edit action
+    @IBAction func editButton_Tapped(_ sender: Any) {
+        openCatNameAlert()
+    }
+    
+    
+    func openCatNameAlert() {
+        // create alert controller
+        let alert = UIAlertController(title: "Cat", message: "Enter your name of cat", preferredStyle: .alert)
+        // create cancel action
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(cancel)
+        // create ok action
+        let ok = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            let textField = alert.textFields?[0]
+            self.Home_CatName.text = textField?.text
+        self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["catName": self.Home_CatName.text])
 
+        }
+        alert.addAction(ok)
+        // add text field
+        alert.addTextField { (textField: UITextField) -> Void in
+            textField.placeholder = "Cat Name"
+        }
+        // present alert controller
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     
     // Hide Navigation Bar
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +130,7 @@ class HomeVC: UIViewController {
             vc?.doorText = doorStateText
         }
     }
+    
     
     // profile add button action
     @IBAction func addPictureAction(_ sender: Any) {
@@ -124,5 +180,3 @@ extension HomeVC : UIImagePickerControllerDelegate, UINavigationControllerDelega
         dismiss(animated: true, completion: nil)
     }
 }
-
-
