@@ -19,6 +19,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var Register_CatTF: UITextField!
     @IBOutlet weak var Register_EmailTF: UITextField!
     @IBOutlet weak var Register_PhoneTF: UITextField!
+    @IBOutlet weak var Register_CatNameTF: UITextField!
     @IBOutlet weak var Register_SubmitButton: UIButton!
     @IBOutlet weak var Register_AddDoor: UILabel!
     @IBOutlet weak var Register_NumOfDoor: UILabel!
@@ -40,8 +41,8 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
         Register_PwCheckTF.delegate = self
         Register_PhoneTF.delegate = self
         Register_CatTF.delegate = self
+        Register_CatNameTF.delegate = self
         
-
     }
     
     // Hide Navigation Bar
@@ -120,8 +121,7 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
             }
            
             guard let user = authResult?.user else { return }
-            
-            
+
             let changeRequest = user.createProfileChangeRequest()
             changeRequest.displayName = username
             changeRequest.commitChanges(completion: {(error) in
@@ -129,13 +129,16 @@ class RegisterVC: UIViewController, UITextFieldDelegate {
                     AlertController.showAlert(self, title: "Error", message: error!.localizedDescription)
                     return
                 }
-                self.db.collection("UserInfo").addDocument(data: [
+                //let user = Auth.auth().currentUser
+                
+                self.db.collection("UserInfo").document(email).setData([
                     "username": self.Register_UsernameTF.text,
                     "numberOfcat": self.Register_CatTF.text,
                     "email": self.Register_EmailTF.text,
                     "phone": self.Register_PhoneTF.text,
                     "addDoor": self.Register_AddDoor.text,
-                    "numberOfdoor": self.Register_NumOfDoor.text])
+                    "numberOfdoor": self.Register_NumOfDoor.text,
+                    "catName": self.Register_CatNameTF.text])
                 
                 self.performSegue(withIdentifier: "RegisterToLogin", sender: nil)
             })

@@ -7,8 +7,8 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseFirestore
-
 
 class EditCatVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
     let db = Firestore.firestore()
@@ -29,8 +29,18 @@ class EditCatVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         
         createPickerView()
         dissmissPickerView()
-
-        // Do any additional setup after loading the view.
+        
+        
+        db.collection("UserInfo").whereField("email", isEqualTo: (Auth.auth().currentUser?.email)!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print(err)
+            } else {
+                for document in querySnapshot!.documents {
+                    let numOfcat = document.data()["numberOfcat"] as? String
+                    self.catNumLabel.text = numOfcat
+                }
+            }
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -64,6 +74,11 @@ class EditCatVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
         toolBar.setItems([doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         catNumTF.inputAccessoryView = toolBar
+    
+    }
+    @IBAction func submit_Tapped(_ sender: Any) {
+        self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["numberOfcat":self.catNumTF.text])
+        self.performSegue(withIdentifier: "EditCatToSetting", sender: nil)
     }
     
     @objc func dissmissKeyboard() {

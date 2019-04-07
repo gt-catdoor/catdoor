@@ -27,6 +27,7 @@ class ControlDoorVC: UIViewController {
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
         db.collection("CatDoor").document("data").updateData(["doorstatus":"unlocked"])
+    db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"unlocked"])
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
         let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
