@@ -16,6 +16,9 @@
 		725DB44E225EE0C200D34FFA /* ScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB44D225EE0C200D34FFA /* ScheduleVC.swift */; };
 		725DB450225EE16900D34FFA /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB44F225EE16900D34FFA /* AlarmCell.swift */; };
 		725DB45222610D1800D34FFA /* AddScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB45122610D1800D34FFA /* AddScheduleVC.swift */; };
+		725DB4562264ED2400D34FFA /* StateEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB4552264ED2400D34FFA /* StateEnumeration.swift */; };
+		725DB4582264FD7D00D34FFA /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB4572264FD7D00D34FFA /* DayCell.swift */; };
+		725DB460226540E400D34FFA /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725DB45F226540E400D34FFA /* Schedule.swift */; };
 		B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5236B6E21F93F11007C36CB /* AlertController.swift */; };
 		B54DECA8222F275A00F72106 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECA7222F275A00F72106 /* NotificationTableView.swift */; };
 		B54DECAC222F70B500F72106 /* AddDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECAB222F70B500F72106 /* AddDoorVC.swift */; };
@@ -46,6 +49,9 @@
 		725DB44D225EE0C200D34FFA /* ScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVC.swift; sourceTree = "<group>"; };
 		725DB44F225EE16900D34FFA /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		725DB45122610D1800D34FFA /* AddScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleVC.swift; sourceTree = "<group>"; };
+		725DB4552264ED2400D34FFA /* StateEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateEnumeration.swift; sourceTree = "<group>"; };
+		725DB4572264FD7D00D34FFA /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
+		725DB45F226540E400D34FFA /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		B5236B6E21F93F11007C36CB /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		B54DECA7222F275A00F72106 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
 		B54DECAB222F70B500F72106 /* AddDoorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoorVC.swift; sourceTree = "<group>"; };
@@ -118,8 +124,11 @@
 				B5E11F1E22284AFA00DF1C14 /* SettingTableView.swift */,
 				720ECB2B219A260A00559D9E /* Main.storyboard */,
 				725DB45122610D1800D34FFA /* AddScheduleVC.swift */,
+				725DB4552264ED2400D34FFA /* StateEnumeration.swift */,
 				725DB44D225EE0C200D34FFA /* ScheduleVC.swift */,
+				725DB4572264FD7D00D34FFA /* DayCell.swift */,
 				725DB44F225EE16900D34FFA /* AlarmCell.swift */,
+				725DB45F226540E400D34FFA /* Schedule.swift */,
 				720ECB2E219A260C00559D9E /* Assets.xcassets */,
 				720ECB30219A260C00559D9E /* LaunchScreen.storyboard */,
 				720ECB33219A260C00559D9E /* Info.plist */,
@@ -302,6 +311,7 @@
 			files = (
 				720ECB2A219A260A00559D9E /* HomeVC.swift in Sources */,
 				B5B904F621F51DC5004BAA71 /* MainVC.swift in Sources */,
+				725DB4582264FD7D00D34FFA /* DayCell.swift in Sources */,
 				B54DECAC222F70B500F72106 /* AddDoorVC.swift in Sources */,
 				B5749CDC22021FE70093FA40 /* FindPwVC.swift in Sources */,
 				720ECB3C219A347000559D9E /* ControlDoorVC.swift in Sources */,
@@ -311,10 +321,12 @@
 				B5A7D2C7222CC60D0046B3BE /* CatInfoTableView.swift in Sources */,
 				725DB45222610D1800D34FFA /* AddScheduleVC.swift in Sources */,
 				B5B904F821F52102004BAA71 /* RegisterVC.swift in Sources */,
+				725DB460226540E400D34FFA /* Schedule.swift in Sources */,
 				B5B904F421F51941004BAA71 /* LoginVC.swift in Sources */,
 				B5E11F1F22284AFA00DF1C14 /* SettingTableView.swift in Sources */,
 				B5E11F212228825500DF1C14 /* AccountVC.swift in Sources */,
 				B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */,
+				725DB4562264ED2400D34FFA /* StateEnumeration.swift in Sources */,
 				720ECB28219A260A00559D9E /* AppDelegate.swift in Sources */,
 				B54DECA8222F275A00F72106 /* NotificationTableView.swift in Sources */,
 			);

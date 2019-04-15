@@ -14,9 +14,7 @@ class ScheduleVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var times: [String] = ["1:25 PM", "5:30 AM", "10:30 PM", "11:00 AM"]
-    var dates: [String] = ["APR 04 THU", "REPEATING", "REPEATING", "APR 05 FRI"]
-    var states: [String] = ["UNLOCK", "LOCK DOWN", "IN ONLY", "OUT ONLY"]
+    var schedules: [Schedule] = [Schedule(time: "1:25 PM", date: "Every Monday, Every Tuesday, Every Friday", state: "UNLOCK"), Schedule(time: "10:30 PM", date: "Every Monday, Every Saturday, Every Sunday", state: "Let Cats in Only")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,14 +25,12 @@ class ScheduleVC: UIViewController {
 
 extension ScheduleVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return times.count
+        return schedules.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let time = times[indexPath.row]
-        let date = dates[indexPath.row]
-        let state = states[indexPath.row]
+        let schedule = schedules[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell") as! AlarmCell
-        cell.setSchedule(time: time, date: date, state: state)
+        cell.setSchedule(schedule: schedule)
         return cell
     }
 }

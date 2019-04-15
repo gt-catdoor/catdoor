@@ -15,10 +15,12 @@ class AlarmCell: UITableViewCell {
     @IBOutlet weak var stateDisplay: UILabel!
     
     
+    
+    
 
-func setSchedule(time: String, date: String, state: String) {
-        timeDisplay.text = time
-        dateSettingDisplay.text = date
-        stateDisplay.text = state
+    func setSchedule(schedule: Schedule) {
+        timeDisplay.text = schedule.time
+        dateSettingDisplay.text = schedule.date
+        stateDisplay.text = schedule.state
     }
 }
