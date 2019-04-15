@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CatDoor/AlarmCell.swift"
+            timestampString = "576981379.3926899"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "AlarmCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.dateSettingDisplay.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.021938"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.dateSettingDisplay.setter : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.0249161"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "106">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.dateSettingDisplay.modify : Swift.Optional&lt;__C.UILabel&gt;"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.029663"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "69">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.dateSettingDisplay.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.032728"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; CatDoor.AlarmCell"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.03583"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "321">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CatDoor.AlarmCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;CatDoor.AlarmCell&gt;"
+                  moduleName = "CatDoor"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shott/CatDoorProject/CatDoor/CatDoor/AlarmCell.swift"
+                  timestampString = "576648233.041187"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "223">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CatDoor/AlarmCell.swift"
+            timestampString = "576981379.392862"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "AlarmCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
