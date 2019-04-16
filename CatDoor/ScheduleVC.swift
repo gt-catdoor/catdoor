@@ -7,19 +7,45 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class ScheduleVC: UIViewController {
     
-
-    
     @IBOutlet weak var tableView: UITableView!
     
-    var schedules: [Schedule] = [Schedule(time: "1:25 PM", date: "Every Monday, Every Tuesday, Every Friday", state: "UNLOCK"), Schedule(time: "10:30 PM", date: "Every Monday, Every Saturday, Every Sunday", state: "Let Cats in Only")]
+    let db = Firestore.firestore()
+    
+    var schedules: [Schedule] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
-        tableView.dataSource = self
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        let docRef = self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).collection("Schedules").document("NumOfSchedules")
+        
+        var numSchedules:Int? = 0
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                numSchedules = document.get("Total") as! Int
+                for x in 1...numSchedules! {
+                    let scheduleName = "Schedule" + String(x)
+                    let scheduleRef = self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).collection("Schedules").document(scheduleName)
+                    scheduleRef.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let scheduleTime = document.get("time") as! String
+                            let scheduleDate = document.get("date") as! String
+                            let scheduleState = document.get("state") as! String
+                            let schedule = Schedule(time: scheduleTime, date: scheduleDate, state: scheduleState)
+                            self.schedules.append(schedule)
+                            self.tableView.reloadData()
+                        } else {
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

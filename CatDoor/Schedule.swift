@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Schedule {
+public class Schedule {
     var time: String
     var date: String
     var state: String

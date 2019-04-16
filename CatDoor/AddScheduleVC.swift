@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class AddScheduleVC: UIViewController {
     
@@ -15,6 +17,11 @@ class AddScheduleVC: UIViewController {
     @IBOutlet weak var tempOutput: UILabel!
     @IBOutlet weak var segControl: UISegmentedControl!
     @IBOutlet weak var repeatDays: UITableView!
+    
+    let db = Firestore.firestore()
+    var timeString = ""
+    var dateString = ""
+    var stateString = ""
     
     let dateFormatter = DateFormatter()
     var repeatDaysItems: [String] = ["Every Sunday", "Every Monday", "Every Tuesday", "Every Wednesday", "Every Thursday", "Every Friday", "Every Saturday"]
@@ -43,7 +50,7 @@ class AddScheduleVC: UIViewController {
         default:
             break
         }
-        var stateString = state.toString()
+        stateString = state.toString()
         
         var selectedDays: [String] = []
         for cell in repeatDays.visibleCells {
@@ -52,14 +59,13 @@ class AddScheduleVC: UIViewController {
                 selectedDays.append(dayCell.returnDay())
             }
         }
-        var repeatDays = ""
         for item in selectedDays {
-            repeatDays = repeatDays + item + ", "
+            dateString = dateString + item + ", "
         }
         
-       var timeString = dateFormatter.string(from: timePicker.date)
+       timeString = dateFormatter.string(from: timePicker.date)
         
-        let alert = UIAlertController(title: "Is this correct?", message: ("Do you want to set a schedule at " + timeString + " that repeats " + repeatDays + "so that the door is set to " + stateString + "?"), preferredStyle: .alert)
+        let alert = UIAlertController(title: "Is this correct?", message: ("Do you want to set a schedule at " + timeString + " that repeats " + dateString + "so that the door is set to " + stateString + "?"), preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Confirm", style: .default, handler: self.back)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(confirmAction)
@@ -69,7 +75,26 @@ class AddScheduleVC: UIViewController {
     }
     
     func back(alert: UIAlertAction!) {
-        self.performSegue(withIdentifier: "ToSchedules", sender: nil)
+        let docRef = self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).collection("Schedules").document("NumOfSchedules")
+        var numSchedules:Int? = 0
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                numSchedules = document.get("Total") as! Int
+                numSchedules = numSchedules! + 1
+                let scheduleName = "Schedule" + String(numSchedules!)
+                
+                docRef.setData(["Total": numSchedules])
+                self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).collection("Schedules").document(scheduleName).setData(["time": self.timeString, "date": self.dateString, "state": self.stateString])
+                self.performSegue(withIdentifier: "ToSchedules", sender: nil)
+            } else {
+                numSchedules = 1
+                let scheduleName = "Schedule" + String(numSchedules!)
+                
+                docRef.setData(["Total": numSchedules])
+                self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).collection("Schedules").document(scheduleName).setData(["time": self.timeString, "date": self.dateString, "state": self.stateString])
+                self.performSegue(withIdentifier: "ToSchedules", sender: nil)
+            }
+        }
     }
 }
 
