@@ -13,6 +13,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class HomeVC: UIViewController {
+    let storage = Storage.storage()
     let db = Firestore.firestore()
     
     @IBOutlet weak var Home_nameLabel: UILabel!
@@ -77,7 +78,18 @@ class HomeVC: UIViewController {
                 }
             }
         }
-        
+
+        // Display door status
+        db.collection("UserInfo").whereField("email", isEqualTo: (Auth.auth().currentUser?.email)!).getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print(err)
+            } else {
+                for document in querySnapshot!.documents {
+                    let doorStateText = document.data()["doorstatus"] as? String
+                    self.doorState.text = doorStateText
+                }
+            }
+        }
         picker.delegate = self
     }
     
@@ -88,7 +100,7 @@ class HomeVC: UIViewController {
         openCatNameAlert()
     }
     
-    
+    // Helper method for edit button of cat
     func openCatNameAlert() {
         // create alert controller
         let alert = UIAlertController(title: "Cat", message: "Enter your name of cat", preferredStyle: .alert)
@@ -132,7 +144,7 @@ class HomeVC: UIViewController {
     }
     
     
-    // profile add button action
+    // profile picture add button action
     @IBAction func addPictureAction(_ sender: Any) {
         let alert =  UIAlertController(title: "", message: "Change Profile Photo", preferredStyle: .actionSheet)
 

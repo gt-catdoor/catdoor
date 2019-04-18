@@ -44,10 +44,6 @@ class AddDoorVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,
                 }
             }
         }
-        
-        
-        
-       
     }
     
     

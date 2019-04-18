@@ -18,7 +18,6 @@
 		B54DECAC222F70B500F72106 /* AddDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECAB222F70B500F72106 /* AddDoorVC.swift */; };
 		B54DECAE2231CAF900F72106 /* EditCatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECAD2231CAF800F72106 /* EditCatVC.swift */; };
 		B5749CDC22021FE70093FA40 /* FindPwVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5749CDB22021FE70093FA40 /* FindPwVC.swift */; };
-		B5A7D2C7222CC60D0046B3BE /* CatInfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D2C6222CC60D0046B3BE /* CatInfoTableView.swift */; };
 		B5B904F421F51941004BAA71 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F321F51941004BAA71 /* LoginVC.swift */; };
 		B5B904F621F51DC5004BAA71 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F521F51DC5004BAA71 /* MainVC.swift */; };
 		B5B904F821F52102004BAA71 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B904F721F52102004BAA71 /* RegisterVC.swift */; };
@@ -45,7 +44,6 @@
 		B54DECAB222F70B500F72106 /* AddDoorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoorVC.swift; sourceTree = "<group>"; };
 		B54DECAD2231CAF800F72106 /* EditCatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCatVC.swift; sourceTree = "<group>"; };
 		B5749CDB22021FE70093FA40 /* FindPwVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPwVC.swift; sourceTree = "<group>"; };
-		B5A7D2C6222CC60D0046B3BE /* CatInfoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatInfoTableView.swift; sourceTree = "<group>"; };
 		B5B904F321F51941004BAA71 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B5B904F521F51DC5004BAA71 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		B5B904F721F52102004BAA71 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 				B5E11F202228825500DF1C14 /* AccountVC.swift */,
 				B54DECAB222F70B500F72106 /* AddDoorVC.swift */,
 				B54DECAD2231CAF800F72106 /* EditCatVC.swift */,
-				B5A7D2C6222CC60D0046B3BE /* CatInfoTableView.swift */,
 				B5E11F1E22284AFA00DF1C14 /* SettingTableView.swift */,
 				720ECB2B219A260A00559D9E /* Main.storyboard */,
 				720ECB2E219A260C00559D9E /* Assets.xcassets */,
@@ -297,7 +294,6 @@
 				B5749CDC22021FE70093FA40 /* FindPwVC.swift in Sources */,
 				720ECB3C219A347000559D9E /* ControlDoorVC.swift in Sources */,
 				B54DECAE2231CAF900F72106 /* EditCatVC.swift in Sources */,
-				B5A7D2C7222CC60D0046B3BE /* CatInfoTableView.swift in Sources */,
 				B5B904F821F52102004BAA71 /* RegisterVC.swift in Sources */,
 				B5B904F421F51941004BAA71 /* LoginVC.swift in Sources */,
 				B5E11F1F22284AFA00DF1C14 /* SettingTableView.swift in Sources */,
