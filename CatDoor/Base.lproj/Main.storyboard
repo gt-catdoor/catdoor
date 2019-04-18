@@ -1119,82 +1119,6 @@
             </objects>
             <point key="canvasLocation" x="740.57971014492762" y="-1491.0326086956522"/>
         </scene>
-        <!--Cat Information-->
-        <scene sceneID="bQy-8c-FcM">
-            <objects>
-                <viewController id="yaT-sZ-30X" customClass="CatInfoTableView" customModule="CatDoor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pRE-2o-9gT">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-G3-YQq">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Tie-x4-AbL">
-                                        <rect key="frame" x="0.0" y="157" width="414" height="579"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="102" id="JZQ-B6-TSy">
-                                                <rect key="frame" x="0.0" y="28" width="414" height="102"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JZQ-B6-TSy" id="BPC-J4-h3Y">
-                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="101.66666666666667"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Catronics_logo" translatesAutoresizingMaskIntoConstraints="NO" id="zkV-nN-knT">
-                                                            <rect key="frame" x="20" y="5" width="90" height="90"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                        <button opaque="NO" tag="102" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMi-gb-5fb">
-                                                            <rect key="frame" x="343" y="33" width="56" height="34"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                            <color key="tintColor" red="0.83661167512690349" green="0.23494752081434364" blue="0.14064251194799718" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                            <state key="normal" title="Delete"/>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cat Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3PD-J3-WyH">
-                                                            <rect key="frame" x="129" y="22" width="206" height="56"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wxC-7z-s45">
-                                        <rect key="frame" x="338" y="111" width="70" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="ADD"/>
-                                        <connections>
-                                            <action selector="addRow:" destination="yaT-sZ-30X" eventType="touchUpInside" id="IGn-kL-LAe"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Tie-x4-AbL" secondAttribute="trailing" id="8Oz-zz-qKe"/>
-                                    <constraint firstItem="Tie-x4-AbL" firstAttribute="leading" secondItem="ex0-G3-YQq" secondAttribute="leading" id="Byz-aY-BZt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Tie-x4-AbL" secondAttribute="bottom" id="hD7-aY-Ivi"/>
-                                    <constraint firstItem="Tie-x4-AbL" firstAttribute="top" secondItem="ex0-G3-YQq" secondAttribute="top" constant="100" id="par-A4-m1f"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="zLz-2a-e5v"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Cat Information" id="nD6-nL-1ZJ"/>
-                    <connections>
-                        <outlet property="tblList" destination="Tie-x4-AbL" id="HYi-MI-adD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="45g-4U-ITS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2119" y="-2175"/>
-        </scene>
         <!--Edit CatVC-->
         <scene sceneID="9mw-Hq-Q3u">
             <objects>
@@ -1720,7 +1644,6 @@
         <image name="pencil-edit-button" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TgN-wL-z5Y"/>
         <segue reference="Z9a-5g-gTJ"/>
         <segue reference="XBe-Mu-pId"/>
         <segue reference="6zN-Kz-gSQ"/>

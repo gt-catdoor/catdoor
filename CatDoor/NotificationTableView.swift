@@ -8,8 +8,11 @@
 
 import UIKit
 import UserNotifications
+import FirebaseFirestore
+import Firebase
 
 class NotificationTableView: UITableViewController {
+    let db = Firestore.firestore()
     
     
     @IBAction func cat_switch(_ sender: UISwitch) {
@@ -47,9 +50,21 @@ class NotificationTableView: UITableViewController {
         content.title = "Notification title"
         content.body = "Notification body"
         
-        // Create the notification trigger
+
+        // received data from firestore
+        db.collection("CatDoor").document("data")
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                print("\(document.data())")
+        }
         
+
     }
+    
+    
 
     
     

@@ -19,18 +19,22 @@ class ControlDoorVC: UIViewController {
     
     var doorText:String = ""
     
+    
+    
     // unlock button action
     @IBAction func unlockButton(_ sender: UIButton) {
         unlockButton.isSelected = true
-        doorText = "Unlocked"
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
-        db.collection("CatDoor").document("data").updateData(["doorstatus":"unlocked"])
-    db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"unlocked"])
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            self.doorText = "Unlock"
+            self.db.collection("CatDoor").document("data").updateData(["doorstatus":"Unlock"])
+            self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"Unlock"])
+            self.performSegue(withIdentifier: "controlToHome", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -40,15 +44,18 @@ class ControlDoorVC: UIViewController {
     // lock button action
     @IBAction func lockDownButton(_ sender: Any) {
         lockDownButton.isSelected = true
-        doorText = "Locked down"
         unlockButton.isSelected = false
         inOnlyButton.isSelected = false
         outOnlyButton.isSelected = false
-        db.collection("CatDoor").document("data").updateData(["doorstatus":"locked"])
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            self.doorText = "Lock Down"
+            self.db.collection("CatDoor").document("data").updateData(["doorstatus":"Lock Down"])
+            self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"Lock Down"])
+            self.performSegue(withIdentifier: "controlToHome", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -58,15 +65,18 @@ class ControlDoorVC: UIViewController {
     // in only button action
     @IBAction func inOnlyButton(_ sender: Any) {
         inOnlyButton.isSelected = true
-        doorText = "Lets Cats in Only"
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         outOnlyButton.isSelected = false
-        db.collection("CatDoor").document("data").updateData(["doorstatus":"inOnly"])
         
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            self.doorText = "Let Cats in Only"
+            self.db.collection("CatDoor").document("data").updateData(["doorstatus":"Let Cats in Only"])
+            self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"Let Cats in Only"])
+            self.performSegue(withIdentifier: "controlToHome", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -76,15 +86,17 @@ class ControlDoorVC: UIViewController {
     //out only button action
     @IBAction func outOnlyButton(_ sender: Any) {
         outOnlyButton.isSelected = true
-        doorText = "Lets Cats out Only"
         unlockButton.isSelected = false
         lockDownButton.isSelected = false
         inOnlyButton.isSelected = false
-        db.collection("CatDoor").document("data").updateData(["doorstatus":"outOnly"])
-
         //Popup
         let alert = UIAlertController(title: "Are you sure?", message: "", preferredStyle: .alert )
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: self.sub)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action: UIAlertAction) -> Void in
+            self.doorText = "Let Cats out Only"
+            self.db.collection("CatDoor").document("data").updateData(["doorstatus":"Let Cats out Only"])
+            self.db.collection("UserInfo").document((Auth.auth().currentUser?.email)!).updateData(["doorstatus":"Let Cats out Only"])
+            self.performSegue(withIdentifier: "controlToHome", sender: nil)
+        }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler:  nil)
         alert.addAction(okAction)
         alert.addAction(cancelAction)
@@ -95,25 +107,31 @@ class ControlDoorVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        if (doorText == "Lets Cats out Only") {
+        if (doorText == "Let Cats out Only") {
             unlockButton.isSelected = false
             lockDownButton.isSelected = false
             inOnlyButton.isSelected = false
             outOnlyButton.isSelected = true
-        } else if (doorText == "Locked down") {
+        } else if (doorText == "Lock Down") {
             lockDownButton.isSelected = true
             unlockButton.isSelected = false
             inOnlyButton.isSelected = false
             outOnlyButton.isSelected = false
-        } else if (doorText == "Lets Cats in Only") {
+        } else if (doorText == "Let Cats in Only") {
             inOnlyButton.isSelected = true
             unlockButton.isSelected = false
             lockDownButton.isSelected = false
             outOnlyButton.isSelected = false
-        } else {
+        } else if (doorText == "Unlock") {
             outOnlyButton.isSelected = false
             unlockButton.isSelected = true
+            lockDownButton.isSelected = false
+            inOnlyButton.isSelected = false
+        } else {
+            outOnlyButton.isSelected = false
+            unlockButton.isSelected = false
             lockDownButton.isSelected = false
             inOnlyButton.isSelected = false
         }
@@ -126,7 +144,7 @@ class ControlDoorVC: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    // door status messege to home screen
+    // door status messege from home screen
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.destination is HomeVC
@@ -137,7 +155,7 @@ class ControlDoorVC: UIViewController {
     }
     
      //If pressed OK, then go to home screen.
-    func sub(alert: UIAlertAction!) {
-        self.performSegue(withIdentifier: "ToHome", sender: nil)
-    }
+//    func sub(alert: UIAlertAction!) {
+//        self.performSegue(withIdentifier: "controlToHome", sender: nil)
+//    }
 }
