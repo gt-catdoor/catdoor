@@ -1,6 +1,21 @@
 # Cat Door Extraordinaire
 
-DESCRIBE PROJECT
+This project aims to control the lock on a cat door through an app so that the user can control the door away from home without the need to use special collars or put a chip inside their cat. We also use computer vision to detect cats and intruders so that intruders, such as a racoon, are not allowed entry.
+
+## Release Notes
+We were able to include the following features:
+
+- Detecting an intruder and disallowing access
+- Ability to control the door with the app
+- Having a physical door that moves to appropriate lock positions and has a camera for computer vision
+- Ability to edit account information
+
+Below are features we were not able to include:
+
+- Ability to create a schedule to change the state of the door
+- Statistics, such as how many times a cat used the door
+- Having the door unthethered from a computer
+- Detection of prey in cats mouth
 
 ## Prerequisites
 
