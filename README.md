@@ -9,15 +9,15 @@ DESCRIBE PROJECT
 
 ### Installing the App
 
--Make sure that you are on the master branch of this repository
+- Make sure that you are on the master branch of this repository
 ![Where to find branches](AppInstallationImages/masterBranchImage.png)
 
--Then, you want to press the green clone of download button and choose to open the project in Xcode
-![Cloning the project into Xcode](AppInstallationImages/cloneToXcode.png)
+- Then, you want to press the green clone of download button and choose to open the project in Xcode
+![Cloning the project into Xcode](AppInstallationImages/clonetoXcode.png)
 
--Next, the project should open up in Xcode
+- Next, the project should open up in Xcode
 
--After this, you want to to select the Xcode tab in the upper left (next to the apple symbol) and then select preferences
+- After this, you want to to select the Xcode tab in the upper left (next to the apple symbol) and then select preferences
 ![Navigate to Xcode Preferences](AppInstallationImages/XcodePreferences.png)
 
 ### Installing the Computer Vision Program
