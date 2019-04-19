@@ -42,13 +42,11 @@ DESCRIBE PROJECT
 ![Replace Bundle Identifier with Apple ID](AppInstallationImages/bundleIdentifier.png)
 
 - Next, you should scroll down again to the section named Deployment Info and make sure that the text field labelled Deployment Target is set to a number that is less than or equal to the current software version you are running on your iphone. In this case, the phone I was using had a version of software greater than version 10
-
 ![Change Deployment Target](AppInstallerImages/deploymentTarget.png)
 
 - After this, you should connect your iPhone to your computer
 
 - You then need to click on the tab located near the play button at the top of the application that will be labelled with the name of some type of iPhone. This tab will be directly next to another tab that says CatDoor
-
 ![Select iPhone Tab](AppInstallerImages/typeOfPhoneTab.png)
 
 - You should select the option on the top that says iPhone and then click the play button(triangle)
