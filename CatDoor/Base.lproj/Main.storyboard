@@ -644,33 +644,114 @@
                     <view key="view" contentMode="scaleToFill" id="YZP-qE-JJM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dZe-z8-wjt"/>
+                    </view>
+                    <connections>
+                        <outlet property="catDetectionLabel" destination="Iub-Sj-Vft" id="lVH-AT-ZQ0"/>
+                        <outlet property="intruderDetctionsLabel" destination="XKl-iY-Fah" id="7TD-bN-jIS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dZi-Se-BS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1524.6376811594205" y="1189.9553571428571"/>
+        </scene>
+        <!--StatisticsVC-->
+        <scene sceneID="ESp-s5-Off">
+            <objects>
+                <viewController id="V1h-e7-nby" customClass="StatisticsVC" customModule="CatDoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jtm-Fs-Grv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojv-yL-emq">
-                                <rect key="frame" x="16" y="43" width="81" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojv-yL-emq">
+                                <rect key="frame" x="20" y="44" width="81" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="&lt; Back">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Jo3-Tn-BFe"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="Mb8-xm-4zo"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-lH-SuM">
-                                <rect key="frame" x="131" y="124" width="150" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-lH-SuM">
+                                <rect key="frame" x="132" y="90" width="150" height="37"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="29"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of Cats Detected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mM7-4i-FZS">
+                                <rect key="frame" x="101" y="182" width="232" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iub-Sj-Vft">
+                                <rect key="frame" x="202" y="211" width="11" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv4-Nz-o6G">
+                                <rect key="frame" x="186" y="250" width="42" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="catResetButton:" destination="K2j-1t-23Q" eventType="touchUpInside" id="T0n-cF-63W"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Intruders Detected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wro-9e-Ekc">
+                                <rect key="frame" x="81" y="360" width="252" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKl-iY-Fah">
+                                <rect key="frame" x="202" y="389" width="10" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4R-v4-52w">
+                                <rect key="frame" x="186" y="433" width="42" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="intruderResetButton:" destination="K2j-1t-23Q" eventType="touchUpInside" id="COP-BG-xoq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dZe-z8-wjt"/>
+                        <constraints>
+                            <constraint firstItem="mM7-4i-FZS" firstAttribute="centerX" secondItem="eKf-lH-SuM" secondAttribute="centerX" id="5RQ-7R-2uv"/>
+                            <constraint firstItem="ojv-yL-emq" firstAttribute="top" secondItem="HOg-W7-YGd" secondAttribute="top" id="6jD-r3-z6Q"/>
+                            <constraint firstItem="HOg-W7-YGd" firstAttribute="trailing" secondItem="ojv-yL-emq" secondAttribute="trailing" constant="313" id="BYO-XO-TLO"/>
+                            <constraint firstItem="Iub-Sj-Vft" firstAttribute="centerX" secondItem="mM7-4i-FZS" secondAttribute="centerX" id="HeA-p6-2k9"/>
+                            <constraint firstItem="XKl-iY-Fah" firstAttribute="leading" secondItem="Iub-Sj-Vft" secondAttribute="leading" id="Hjc-eK-fI1"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="top" secondItem="HOg-W7-YGd" secondAttribute="top" constant="46" id="K72-7Y-opt"/>
+                            <constraint firstItem="mM7-4i-FZS" firstAttribute="top" secondItem="eKf-lH-SuM" secondAttribute="bottom" constant="55" id="LVv-tb-dHI"/>
+                            <constraint firstItem="wro-9e-Ekc" firstAttribute="top" secondItem="Iv4-Nz-o6G" secondAttribute="bottom" constant="80" id="MMx-gu-ik0"/>
+                            <constraint firstItem="XKl-iY-Fah" firstAttribute="centerX" secondItem="Q4R-v4-52w" secondAttribute="centerX" id="Mzg-Wz-dw1"/>
+                            <constraint firstItem="Iv4-Nz-o6G" firstAttribute="centerX" secondItem="Iub-Sj-Vft" secondAttribute="centerX" id="NVL-nl-PoO"/>
+                            <constraint firstItem="Q4R-v4-52w" firstAttribute="top" secondItem="XKl-iY-Fah" secondAttribute="bottom" constant="23" id="Obd-F3-znE"/>
+                            <constraint firstItem="Iub-Sj-Vft" firstAttribute="leading" secondItem="HOg-W7-YGd" secondAttribute="leading" constant="202" id="RBK-W0-v0P"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="leading" secondItem="HOg-W7-YGd" secondAttribute="leading" constant="132" id="UNT-0o-wDZ"/>
+                            <constraint firstItem="Iub-Sj-Vft" firstAttribute="top" secondItem="mM7-4i-FZS" secondAttribute="bottom" constant="8" symbolic="YES" id="f1J-bJ-l0W"/>
+                            <constraint firstItem="XKl-iY-Fah" firstAttribute="top" secondItem="wro-9e-Ekc" secondAttribute="bottom" constant="8" symbolic="YES" id="neB-gw-a6j"/>
+                            <constraint firstItem="mM7-4i-FZS" firstAttribute="leading" secondItem="HOg-W7-YGd" secondAttribute="leading" constant="101" id="pil-SD-nwz"/>
+                            <constraint firstItem="Iv4-Nz-o6G" firstAttribute="top" secondItem="Iub-Sj-Vft" secondAttribute="bottom" constant="18" id="vlC-zZ-gDw"/>
+                            <constraint firstItem="ojv-yL-emq" firstAttribute="leading" secondItem="jtm-Fs-Grv" secondAttribute="leadingMargin" id="wKs-TU-XVS"/>
+                            <constraint firstItem="Iv4-Nz-o6G" firstAttribute="centerX" secondItem="wro-9e-Ekc" secondAttribute="centerX" id="wZz-8h-7ok"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="centerX" secondItem="jtm-Fs-Grv" secondAttribute="centerX" id="wav-26-FqN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="HOg-W7-YGd"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZi-Se-BS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gYH-Sc-8Km" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1525" y="1190"/>
+            <point key="canvasLocation" x="2373.913043478261" y="1174.5535714285713"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
@@ -699,7 +780,7 @@
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="Statistics"/>
                                         <connections>
-                                            <segue destination="K2j-1t-23Q" kind="show" identifier="HomeToStatistics" id="2Ym-Hk-IrC"/>
+                                            <segue destination="V1h-e7-nby" kind="show" id="qnb-fy-GCD"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O64-aP-AGZ">
@@ -1645,7 +1726,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Z9a-5g-gTJ"/>
-        <segue reference="XBe-Mu-pId"/>
+        <segue reference="Mb8-xm-4zo"/>
         <segue reference="6zN-Kz-gSQ"/>
         <segue reference="7iP-me-ux9"/>
     </inferredMetricsTieBreakers>

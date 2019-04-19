@@ -13,6 +13,7 @@
 		720ECB2F219A260C00559D9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 720ECB2E219A260C00559D9E /* Assets.xcassets */; };
 		720ECB32219A260C00559D9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 720ECB30219A260C00559D9E /* LaunchScreen.storyboard */; };
 		720ECB3C219A347000559D9E /* ControlDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720ECB3B219A347000559D9E /* ControlDoorVC.swift */; };
+		72EEF349226A536D00934192 /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72EEF348226A536D00934192 /* StatisticsVC.swift */; };
 		B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5236B6E21F93F11007C36CB /* AlertController.swift */; };
 		B54DECA8222F275A00F72106 /* NotificationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECA7222F275A00F72106 /* NotificationTableView.swift */; };
 		B54DECAC222F70B500F72106 /* AddDoorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54DECAB222F70B500F72106 /* AddDoorVC.swift */; };
@@ -39,6 +40,7 @@
 		720ECB31219A260C00559D9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		720ECB33219A260C00559D9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		720ECB3B219A347000559D9E /* ControlDoorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlDoorVC.swift; sourceTree = "<group>"; };
+		72EEF348226A536D00934192 /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		B5236B6E21F93F11007C36CB /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		B54DECA7222F275A00F72106 /* NotificationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableView.swift; sourceTree = "<group>"; };
 		B54DECAB222F70B500F72106 /* AddDoorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoorVC.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				B54DECAD2231CAF800F72106 /* EditCatVC.swift */,
 				B5E11F1E22284AFA00DF1C14 /* SettingTableView.swift */,
 				720ECB2B219A260A00559D9E /* Main.storyboard */,
+				72EEF348226A536D00934192 /* StatisticsVC.swift */,
 				720ECB2E219A260C00559D9E /* Assets.xcassets */,
 				720ECB30219A260C00559D9E /* LaunchScreen.storyboard */,
 				720ECB33219A260C00559D9E /* Info.plist */,
@@ -299,6 +302,7 @@
 				B5E11F1F22284AFA00DF1C14 /* SettingTableView.swift in Sources */,
 				B5E11F212228825500DF1C14 /* AccountVC.swift in Sources */,
 				B5236B6F21F93F11007C36CB /* AlertController.swift in Sources */,
+				72EEF349226A536D00934192 /* StatisticsVC.swift in Sources */,
 				720ECB28219A260A00559D9E /* AppDelegate.swift in Sources */,
 				B54DECA8222F275A00F72106 /* NotificationTableView.swift in Sources */,
 			);
@@ -449,13 +453,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379HB7W3AW;
+				DEVELOPMENT_TEAM = 7X26RR5D43;
 				INFOPLIST_FILE = CatDoor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samanthahott.CatDoor;
+				PRODUCT_BUNDLE_IDENTIFIER = "monkeysme22-aol.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CatDoor/CatDoor-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -471,13 +476,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 379HB7W3AW;
+				DEVELOPMENT_TEAM = 7X26RR5D43;
 				INFOPLIST_FILE = CatDoor/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.samanthahott.CatDoor;
+				PRODUCT_BUNDLE_IDENTIFIER = "monkeysme22-aol.com";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CatDoor/CatDoor-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
