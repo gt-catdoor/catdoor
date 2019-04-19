@@ -4,7 +4,8 @@ DESCRIBE PROJECT
 
 ## Prerequisites
 
-What things you need to install the software and how to install them
+- Mac Computer
+- Most recent version of XCode from the Apple App Store
 
 ```
 Give examples
