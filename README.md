@@ -36,6 +36,14 @@ DESCRIBE PROJECT
 
 ![CatDoor file selected on General Tab](AppInstallationImages/catDoorGeneralTab.png)
 
+- You then want to scroll down to the section named Signing and select the drop down menu where it says team and select Personal Team (you will continue to see an error message even after this step)
+
+![Setting the team under Signing](AppInstallationImages/personalTeam.png)
+
+- You next should scrol up to the section named Identity and delete what is written in the text field for Bundle Identifier and replace it with your Apple ID username
+
+![Replace Bundle Identifier with Apple ID](AppInstallationImages/bundleIdentifier.png)
+
 ### Installing the Computer Vision Program
 
 A step by step series of examples that tell you how to get a development env running
