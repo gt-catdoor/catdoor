@@ -10,7 +10,7 @@ DESCRIBE PROJECT
 ### Installing the App
 
 Make sure that you are on the master branch of this repository
-![Were to find branches](AppInstallationImages/masterBranchImage.png)
+![Where to find branches](AppInstallationImages/masterBranchImage.png)
 
 And repeat
 
