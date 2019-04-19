@@ -33,16 +33,19 @@ DESCRIBE PROJECT
 - You can then close out of this pop-up screen
 
 - Next, you want to make sure you have the file named CatDoor with a blue symbol selected in the folder view and you also need to make sure that on the main screen, you are looking at the general tab
-
 ![CatDoor file selected on General Tab](AppInstallationImages/catDoorGeneralTab.png)
 
 - You then want to scroll down to the section named Signing and select the drop down menu where it says team and select Personal Team (you will continue to see an error message even after this step)
-
 ![Setting the team under Signing](AppInstallationImages/personalTeam.png)
 
-- You next should scrol up to the section named Identity and delete what is written in the text field for Bundle Identifier and replace it with your Apple ID username
-
+- You next should scroll up to the section named Identity and delete what is written in the text field for Bundle Identifier and replace it with your Apple ID username
 ![Replace Bundle Identifier with Apple ID](AppInstallationImages/bundleIdentifier.png)
+
+- Next, you should scroll down again to the section named Deployment Info and make sure that the text field labelled Deployment Target is set to a number that is less than or equal to the current software version you are running on your iphone. In this case, the phone I was using had a version of software greater than version 10
+![Change Deployment Target](AppInstallerImages/deploymentTarget.png)
+
+- You then need to click on the tab located near the play button at the top of the application that will be labelled with the name of some type of iPhone. This tab will be directly next to another tab that says CatDoor
+![Select iPhone tab](AppInstallerImages/typeOfPhoneTab.png)
 
 ### Installing the Computer Vision Program
 
