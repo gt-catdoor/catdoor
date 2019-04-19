@@ -6,6 +6,7 @@ DESCRIBE PROJECT
 
 - Mac Computer
 - Most recent version of XCode from the Apple App Store
+- Apple ID
 
 ### Installing the App
 
@@ -21,6 +22,18 @@ DESCRIBE PROJECT
 ![Navigate to Xcode Preferences](AppInstallationImages/XcodePreferences.png)
 
 - Make sure you are on the accounts tab and then press the plus(+) button in the bottom left
+![Add a new account](AppInstallationImages/addAccount.png)
+
+- Make sure that Apple ID is selected and then press continue
+
+- Now, login with your Apple ID credentials
+
+- You should now see your Apple ID account listed
+
+- You can then close out of this pop-up screen
+
+- Next, you want to make sure you have the file named CatDoor with a blue symbol selected in the folder view and you also need to make sure that on the main screen, you are looking at the general tab
+![CatDoor file selected on General Tab](AppInstallationImages/catDoorGeneralTab.png
 
 ### Installing the Computer Vision Program
 
