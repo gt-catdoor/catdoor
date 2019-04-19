@@ -42,23 +42,23 @@ DESCRIBE PROJECT
 ![Replace Bundle Identifier with Apple ID](AppInstallationImages/bundleIdentifier.png)
 
 - Next, you should scroll down again to the section named Deployment Info and make sure that the text field labelled Deployment Target is set to a number that is less than or equal to the current software version you are running on your iphone. In this case, the phone I was using had a version of software greater than version 10
-![Change Deployment Target](AppInstallerImages/deploymentTarget.png)
+![Change Deployment Target](AppInstallationImages/deploymentTarget.png)
 
 - After this, you should connect your iPhone to your computer
 
 - You then need to click on the tab located near the play button at the top of the application that will be labelled with the name of some type of iPhone. This tab will be directly next to another tab that says CatDoor
-![Select iPhone Tab](AppInstallerImages/typeOfPhoneTab.png)
+![Select iPhone Tab](AppInstallationImages/typeOfPhoneTab.png)
 
 - You should select the option on the top that says iPhone and then click the play button(triangle)
-![Select your Phone](AppInstallerImages/selectDevice.png)
+![Select your Phone](AppInstallationImages/selectDevice.png)
 
 - You can now wait for the app to install onto your phone. Once this is done, you can open up the app. However, you will receive an error message like the following:
 
-![Deployment Error Message](AppInstallerImages/errorOnPhone.jpeg)
+![Deployment Error Message](AppInstallationImages/errorOnPhone.jpeg)
 
 - Cancel out of this message and then open up the setttings app on your phone. Then, navigate to the general tab. You can then scroll down until you see an option called Device Managment- click on it.
 
-![Device Management Tab](AppInstallerImages/DeviceManagementTab.jpeg)
+![Device Management Tab](AppInstallationImages/DeviceManagementTab.jpeg)
 
 - You will then see an option with your Apple ID- click on this
 
