@@ -638,39 +638,103 @@
             <point key="canvasLocation" x="-960.86956521739137" y="490.84821428571428"/>
         </scene>
         <!--StatisticsVC-->
-        <scene sceneID="kwm-31-8Gw">
+        <scene sceneID="Gow-Lg-C9f">
             <objects>
-                <viewController id="K2j-1t-23Q" customClass="StatisticsVC" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YZP-qE-JJM">
+                <viewController id="zfp-dl-qt7" customClass="StatisticsVC" customModule="CatDoor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W3g-Er-BSN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ojv-yL-emq">
-                                <rect key="frame" x="16" y="43" width="81" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-lH-SuM">
+                                <rect key="frame" x="135" y="94" width="144" height="37"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="29"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMA-py-MWp">
+                                <rect key="frame" x="20" y="44" width="53" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="&lt; Back">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                                <state key="normal" title="&lt; Back"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="Jo3-Tn-BFe"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="orH-Dd-NtM"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Statistics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKf-lH-SuM">
-                                <rect key="frame" x="131" y="124" width="150" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Times a Cat Has Been Detected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7s-op-GLf">
+                                <rect key="frame" x="20" y="200" width="374" height="19"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQR-42-an7">
+                                <rect key="frame" x="202" y="227" width="10" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Id-Oh-DSV">
+                                <rect key="frame" x="186" y="269" width="42" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="catResetButton:" destination="zfp-dl-qt7" eventType="touchUpInside" id="70P-xV-zGA"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Times Intruder Has Been Detected:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VM8-Re-rdK">
+                                <rect key="frame" x="20" y="368" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9vA-7w-OsV">
+                                <rect key="frame" x="186" y="455" width="42" height="30"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Reset"/>
+                                <connections>
+                                    <action selector="intruderResetButton:" destination="zfp-dl-qt7" eventType="touchUpInside" id="u5j-0R-dXV"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gfo-WU-4Gm">
+                                <rect key="frame" x="202" y="412" width="10" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dZe-z8-wjt"/>
+                        <constraints>
+                            <constraint firstItem="3Id-Oh-DSV" firstAttribute="top" secondItem="CQR-42-an7" secondAttribute="bottom" constant="21" id="94C-ga-cs6"/>
+                            <constraint firstItem="CQR-42-an7" firstAttribute="centerX" secondItem="3Id-Oh-DSV" secondAttribute="centerX" id="Csh-uf-Y8p"/>
+                            <constraint firstItem="9vA-7w-OsV" firstAttribute="top" secondItem="Gfo-WU-4Gm" secondAttribute="bottom" constant="22" id="DQi-UA-2xn"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="top" secondItem="Abk-zw-Hqo" secondAttribute="top" constant="50" id="Ffq-LL-OJU"/>
+                            <constraint firstItem="mMA-py-MWp" firstAttribute="leading" secondItem="Abk-zw-Hqo" secondAttribute="leading" constant="20" id="J4W-8d-ScF"/>
+                            <constraint firstItem="r7s-op-GLf" firstAttribute="top" secondItem="eKf-lH-SuM" secondAttribute="bottom" constant="69" id="Kcu-Kt-G8s"/>
+                            <constraint firstItem="Abk-zw-Hqo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9vA-7w-OsV" secondAttribute="trailing" symbolic="YES" id="Kki-Ca-uHo"/>
+                            <constraint firstItem="3Id-Oh-DSV" firstAttribute="leading" secondItem="9vA-7w-OsV" secondAttribute="leading" id="LYu-VV-koB"/>
+                            <constraint firstItem="Abk-zw-Hqo" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="mMA-py-MWp" secondAttribute="trailing" symbolic="YES" id="N53-av-VNZ"/>
+                            <constraint firstItem="r7s-op-GLf" firstAttribute="leading" secondItem="mMA-py-MWp" secondAttribute="leading" id="XEc-Zz-Qvt"/>
+                            <constraint firstItem="VM8-Re-rdK" firstAttribute="leading" secondItem="W3g-Er-BSN" secondAttribute="leadingMargin" id="XyA-AN-Nem"/>
+                            <constraint firstItem="mMA-py-MWp" firstAttribute="top" secondItem="Abk-zw-Hqo" secondAttribute="top" id="ZMO-6c-pE8"/>
+                            <constraint firstItem="VM8-Re-rdK" firstAttribute="top" secondItem="3Id-Oh-DSV" secondAttribute="bottom" constant="69" id="aob-BN-JJa"/>
+                            <constraint firstItem="CQR-42-an7" firstAttribute="top" secondItem="r7s-op-GLf" secondAttribute="bottom" constant="8" symbolic="YES" id="g93-1R-5Kc"/>
+                            <constraint firstItem="Gfo-WU-4Gm" firstAttribute="top" secondItem="VM8-Re-rdK" secondAttribute="bottom" constant="26" id="ipZ-Sf-wJc"/>
+                            <constraint firstItem="r7s-op-GLf" firstAttribute="trailing" secondItem="VM8-Re-rdK" secondAttribute="trailing" id="otO-Bh-2UF"/>
+                            <constraint firstItem="Abk-zw-Hqo" firstAttribute="trailing" secondItem="VM8-Re-rdK" secondAttribute="trailing" constant="20" id="qmY-6l-yld"/>
+                            <constraint firstItem="Gfo-WU-4Gm" firstAttribute="leading" secondItem="CQR-42-an7" secondAttribute="leading" id="rl4-1z-fDu"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="centerX" secondItem="W3g-Er-BSN" secondAttribute="centerX" id="ueC-Tj-A6s"/>
+                            <constraint firstItem="eKf-lH-SuM" firstAttribute="centerX" secondItem="CQR-42-an7" secondAttribute="centerX" id="whK-v2-uJJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Abk-zw-Hqo"/>
                     </view>
+                    <connections>
+                        <outlet property="catDetectionLabel" destination="CQR-42-an7" id="k0r-N7-2hu"/>
+                        <outlet property="intruderDetctionsLabel" destination="Gfo-WU-4Gm" id="dYn-w3-oa3"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dZi-Se-BS0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GvG-PD-wmP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1525" y="1190"/>
+            <point key="canvasLocation" x="708.69565217391312" y="1189.9553571428571"/>
         </scene>
         <!--HomeVC-->
         <scene sceneID="tne-QT-ifu">
@@ -699,7 +763,7 @@
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="Statistics"/>
                                         <connections>
-                                            <segue destination="K2j-1t-23Q" kind="show" identifier="HomeToStatistics" id="2Ym-Hk-IrC"/>
+                                            <segue destination="zfp-dl-qt7" kind="show" id="LWg-3H-nHT"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O64-aP-AGZ">
@@ -708,9 +772,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <state key="normal" title="Schedule"/>
-                                        <connections>
-                                            <segue destination="8ox-uA-IbK" kind="show" identifier="HomeToSchedule" id="Oqr-ur-AjU"/>
-                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat Door Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJg-eK-ISe">
                                         <rect key="frame" x="62" y="606" width="290" height="31"/>
@@ -1720,9 +1781,8 @@
         <image name="pencil-edit-button" width="512" height="512"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TgN-wL-z5Y"/>
         <segue reference="Z9a-5g-gTJ"/>
-        <segue reference="XBe-Mu-pId"/>
+        <segue reference="orH-Dd-NtM"/>
         <segue reference="6zN-Kz-gSQ"/>
         <segue reference="7iP-me-ux9"/>
     </inferredMetricsTieBreakers>
