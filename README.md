@@ -7,15 +7,9 @@ DESCRIBE PROJECT
 - Mac Computer
 - Most recent version of XCode from the Apple App Store
 
-```
-Give examples
-```
-
 ### Installing the App
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
+Make sure that you are on the master branch of this repository
 
 ```
 Give the example
