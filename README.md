@@ -34,7 +34,7 @@ DESCRIBE PROJECT
 
 - Next, you want to make sure you have the file named CatDoor with a blue symbol selected in the folder view and you also need to make sure that on the main screen, you are looking at the general tab
 
-![CatDoor file selected on General Tab](AppInstallationImages/catDoorGeneralTab.png
+![CatDoor file selected on General Tab](AppInstallationImages/catDoorGeneralTab.png)
 
 ### Installing the Computer Vision Program
 
