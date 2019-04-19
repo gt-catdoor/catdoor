@@ -58,7 +58,7 @@ DESCRIBE PROJECT
 - Cancel out of this message and then open up the setttings app on your phone. Then, navigate to the general tab. You can then scroll down until you see an option called Device Managment- click on it.
 ![Device Management Tab](AppInstallerImages/DeviceManagementTab.jpeg)
 
-- You will then see an option with your Appl ID- click on this
+- You will then see an option with your Apple ID- click on this
 
 - Then select trust and confirm it in the popup window
 
