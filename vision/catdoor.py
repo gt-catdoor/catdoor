@@ -64,15 +64,15 @@ class gui:
 		doc_watch = doc_ref.on_snapshot(self.on_snapshot)
 
 
-		image_result_label = Label(w, textvariable=self.img_str, width=30, height=20).grid(row=0, column=1)
+		image_result_label = Label(w, textvariable=self.img_str, width=30, height=20).grid(row=0, column=4,columnspan=1)
 
-		delay_after_cat_label = Label(w, text = "How much seconds \ndo you want a door to be open \nafter cat is detected?").grid(row = 2, column=0)
-		delay_after_cat_Entry =  Entry(w, textvariable = self.delay_after_cat, fg = "black").grid(row = 2, column = 1, columnspan = 1)
+		delay_after_cat_label = Label(w, text = "How much seconds \ndo you want a door to be open \nafter cat is detected?").grid(row = 2, column=0, columnspan=2)
+		delay_after_cat_Entry =  Entry(w, textvariable = self.delay_after_cat, fg = "black").grid(row = 2, column = 2, columnspan = 2)
 		self.delay_after_cat.set(5)
 
-		start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 3, column = 0, columnspan = 1)
-		start_vision_button = Button(w, text="Start", command = self.updateinit).grid(row=3,column=1, columnspan=1,pady = 5)
-		end_vision_button = Button(w, text="End", command = self.terminate).grid(row=3,column=2, columnspan=1,pady = 5)
+		start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 3, column = 0, columnspan = 2)
+		start_vision_button = Button(w, text="Start", command = self.updateinit).grid(row=3,column=2, columnspan=1,pady = 10)
+		end_vision_button = Button(w, text="End", command = self.terminate).grid(row=3,column=3, columnspan=1,pady = 10)
 		
 
 
@@ -249,7 +249,7 @@ class gui:
 			if self.image_label is None:
 				self.image_label = Label(image=image)
 				self.image_label.image = image
-				self.image_label.grid(row = 0, column = 0, columnspan = 1)
+				self.image_label.grid(row = 0, column = 0, columnspan = 4)
 			else:
 				self.image_label.configure(image=image)
 				self.image_label.image = image  
