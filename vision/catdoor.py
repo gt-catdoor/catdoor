@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 import cv2
 import pyscreenshot as ImageGrab
-from tkinter import Tk, Label, Button, StringVar, IntVar, Entry
+from tkinter import Tk, Label, Button, StringVar, IntVar, Entry, PhotoImage, Frame
 import threading
 from PIL import Image
 from PIL import ImageTk
@@ -64,17 +64,32 @@ class gui:
 		doc_watch = doc_ref.on_snapshot(self.on_snapshot)
 
 
-		image_result_label = Label(w, textvariable=self.img_str, width=30, height=20).grid(row=0, column=4,columnspan=1)
+		## logo
+		# w = Label(w, image=photo)
+		# w.grid(row=0, column=1)
+		# w.photo = photo
+		## logo
 
-		delay_after_cat_label = Label(w, text = "How much seconds \ndo you want a door to be open \nafter cat is detected?").grid(row = 2, column=0, columnspan=2)
-		delay_after_cat_Entry =  Entry(w, textvariable = self.delay_after_cat, fg = "black").grid(row = 2, column = 2, columnspan = 2)
+
+		image_result_label = Label(w, textvariable=self.img_str, width=30, height=20, borderwidth=2, relief="groove").grid(row=1, column=4,columnspan=1, sticky="EWNS")
+
+
+		f1 = Frame(w, borderwidth=2, relief="groove")
+		f1.grid(row = 2, column=0, columnspan=4, sticky="EWNS")
+		delay_after_cat_label = Label(f1, text = "Unlock Duration").grid(row=0,column=0, ipadx = 10, ipady = 10)
+		delay_after_cat_Entry =  Entry(f1, textvariable = self.delay_after_cat).grid(row=0,column=1)
 		self.delay_after_cat.set(5)
 
-		start_vision_label = Label(w, text = "Start Detection!: ").grid(row = 3, column = 0, columnspan = 2)
-		start_vision_button = Button(w, text="Start", command = self.updateinit).grid(row=3,column=2, columnspan=1,pady = 10)
-		end_vision_button = Button(w, text="End", command = self.terminate).grid(row=3,column=3, columnspan=1,pady = 10)
+		start_vision_label = Label(w, text = "Start Detection!: ",borderwidth=2, relief="groove").grid(row = 3, column = 0, columnspan = 2, sticky="EWNS")
+		start_vision_button = Button(w, text="Start", command = self.updateinit,borderwidth=2, relief="groove").grid(row=3,column=2, columnspan=1,ipady = 10,sticky="EWNS")
+		end_vision_button = Button(w, text="End", command = self.terminate,borderwidth=2, relief="groove").grid(row=3,column=3, columnspan=1,ipady = 10,sticky="EWNS")
 		
 
+		image = Image.open("logo.jpg")
+		photo = ImageTk.PhotoImage(image)
+		empty_label = Label(w, image=photo, borderwidth=2, relief="groove")
+		empty_label.grid(row=2,column=4, rowspan=2, sticky="EWNS")
+		empty_label.photo = photo
 
 
 
@@ -247,9 +262,9 @@ class gui:
 			image = image.resize((700, 500), Image.ANTIALIAS)
 			image = ImageTk.PhotoImage(image)
 			if self.image_label is None:
-				self.image_label = Label(image=image)
+				self.image_label = Label(image=image,borderwidth=2, relief="groove")
 				self.image_label.image = image
-				self.image_label.grid(row = 0, column = 0, columnspan = 4)
+				self.image_label.grid(row = 1, column = 0, columnspan = 4)
 			else:
 				self.image_label.configure(image=image)
 				self.image_label.image = image  
@@ -338,6 +353,8 @@ doc_ref = db.collection(u'CatDoor').document(doc_id)
 
 
 tk = Tk()
+tk.title("catdoor")
+tk.configure()
 gui = gui(tk, doc_ref)
 tk.mainloop()
 
