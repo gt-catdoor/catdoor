@@ -84,42 +84,30 @@ Below are features we were not able to include:
 
 ### Installing the Computer Vision Program
 
-A step by step series of examples that tell you how to get a development env running
+Go to a following link: https://drive.google.com/drive/folders/19lhar-c-ds-KsbpLxQeAkCLErA2ILdnl?usp=sharing
 
-Say what the step will be
+You can see following two files, one is a ActiveTcl dmg file for installing libraries for our program, and the other is
+our vision program zip file.
 
-```
-Give the example
-```
+![VisionTwofile](AppInstallationImages/installVision.png)
 
-And repeat
+Once you download a dmg file, click and install pkg (just click oks).
+![tcl1](AppInstallationImages/tcl1.png)
+![tcl2](AppInstallationImages/tcl2.png)
 
-```
-until finished
-```
+Unzip our vision program and just run it!
 
 ### Installing the Hardware
 
-A step by step series of examples that tell you how to get a development env running
+Our vision program requires our embedded camera to capture a face of a cat well. So adjust the height of placement of our catdoor. Also, if you think arduino needs to be more secure, try to cover the device.
 
-Say what the step will be
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
 
 ## Troubleshooting
 
-Possible errors user might run into
+If you cannot open our vision program, you might want to change a Tcl framework path. Try to move your Tcl framework to
+following folder. /Library/Frameworks/Tcl.framework
 
-Say the error
+![tclpath](AppInstallationImages/tcl_path.png)
 
-```
-Give the solution
-```
+
