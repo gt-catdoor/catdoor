@@ -47,11 +47,21 @@ until finished
 
 A step by step series of examples that tell you how to get a development env running
 
+To connect arduino:
+
+```
+1). connect the yellow wire from servo to pin 9
+2). connect the red wire from servo to 5v
+3). connect the black wire from servo to GND
+4). connect the arduino to the computer via USB
+
+
+```
+
 To install the cat door:
 
 ```
-Ideal Cat Flap Installation Instructions
-Ideal Cat Flap Installation
+Cat Flap Installation Instructions
 
  
 
@@ -92,16 +102,6 @@ For Steel Doors:
 Use a jigsaw with a hacksaw blade to cut the opening, starting at the pre-drilled corner holes. Then proceed with the steps above.
 ```
 
-To get arduino running
-
-```
-1). connect the yellow wire from servo to pin 9
-2). connect the red wire from servo to 5v
-3). connect the black wire from servo to GND
-4). connect the arduino to the computer via USB
-
-
-```
 
 ## Troubleshooting
 
