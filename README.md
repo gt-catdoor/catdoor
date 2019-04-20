@@ -86,16 +86,20 @@ Below are features we were not able to include:
 
 Go to a following link: https://drive.google.com/drive/folders/19lhar-c-ds-KsbpLxQeAkCLErA2ILdnl?usp=sharing
 
-You can see following two files, one is a ActiveTcl dmg file for installing libraries for our program, and the other is
-our vision program zip file.
+- You can see following two files, one is a ActiveTcl dmg file for installing libraries for our program, and the other is our vision program zip file.
 
-![VisionTwofile](AppInstallationImages/installVision.png)
+![VisionTwofile](AppInstallationImages/installVision.png = 250x250)
 
-Once you download a dmg file, click and install pkg (just click oks).
-![tcl1](AppInstallationImages/tcl1.png)
-![tcl2](AppInstallationImages/tcl2.png)
 
-Unzip our vision program and just run it!
+- Once you download a dmg file, click and install pkg (just click oks).
+
+
+![tcl1](AppInstallationImages/tcl1.png = 250x250)
+
+
+![tcl2](AppInstallationImages/tcl2.png = 250x250)
+
+- Unzip our vision program and just run it!
 
 ### Installing the Hardware
 
@@ -108,6 +112,6 @@ Our vision program requires our embedded camera to capture a face of a cat well.
 If you cannot open our vision program, you might want to change a Tcl framework path. Try to move your Tcl framework to
 following folder. /Library/Frameworks/Tcl.framework
 
-![tclpath](AppInstallationImages/tcl_path.png)
+![tclpath](AppInstallationImages/tcl_path.png = 250x250)
 
 
