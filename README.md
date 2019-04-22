@@ -119,6 +119,8 @@ To connect arduino:
 
 ```
 ![how to connect arduino](AppInstallationImages/arduino.jpg)
+
+
 To install the cat door:
 
 ```
