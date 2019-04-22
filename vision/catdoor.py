@@ -125,7 +125,7 @@ class gui:
 
 			
 			self.delay_after_cat = self.delay_after_cat.get()
-			
+
 			self.f1.destroy()
 			self.f2.destroy()
 
@@ -240,7 +240,7 @@ class gui:
 				self.end = time.time()
 				# print(self.end - self.start)
 				# print("delay: " + str(self.delay_after_cat.get()))
-				if self.isCounting and self.end - self.start > self.delay_after_cat.get():
+				if self.isCounting and self.end - self.start > self.delay_after_cat:
 					self.isTimeOver = True
 					self.isCounting = False
 					if self.new_label != "others": ## intruders
