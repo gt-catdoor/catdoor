@@ -13,7 +13,7 @@ from setuptools import setup
 APP = ['catdoor.py']
 DATA_FILES = []
 OPTIONS = {"packages":["numpy", "tensorflow", "cv2", "PIL", "pyscreenshot", "tkinter", "serial"], \
-"resources":[os.getcwd() + "/output_labels.txt", os.getcwd() + "/output_graph.pb", os.getcwd() + "/serviceaccount.json"],
+"resources":[os.getcwd() + "/output_labels.txt", os.getcwd() + "/output_graph.pb", os.getcwd() + "/serviceaccount.json", os.getcwd() + "/logo.jpg"],
 'iconfile':'icon.icns'}
 
 setup(

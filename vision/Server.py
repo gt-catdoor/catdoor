@@ -171,9 +171,9 @@ def doorLock(state):
     if state.lower() == "lock down":
         moveServo(0, 90)
     elif state.lower() == "let cats in only":
-        moveServo(0, 40)
+        moveServo(0, 45)
     elif state.lower() == "let cats out only":
-        moveServo(0, 130)
+        moveServo(0, 135)
     elif state.lower() == "unlock":
         moveServo(0, 180)  
 

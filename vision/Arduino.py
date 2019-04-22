@@ -4,6 +4,7 @@
 import serial.tools.list_ports
 import serial
 from serial import SerialException
+import time
 
 
 class Arduino(object):
@@ -18,41 +19,10 @@ class Arduino(object):
             for p in ports:
                 print(p.device)
             serials = []
-            connectedSerial = None
-            connected = False
+            print(len(ports))
             for p in ports:
                 try:
-                    print("Attempting to connect: " + p.device)
-                    connectedSerial = serial.Serial(p.device, baudrate, timeout=1, write_timeout=1)
-                    print("Attempting handshake with: " + p.device)
-
-                    connectedSerial.write(b'97')
-
-                    # print("Preliminary message received: " + self.getDataSerial(connectedSerial))
-
-                    msg = self.getDataSerial(connectedSerial)
-                    #print("Response received: (" + msg + ")")
-
-                    if msg == "ready":
-                        connectedSerial.write(b'98')
-                        print("Response received from: " + p.device)
-                        self.serial = connectedSerial
-                        print("Arduino Connected.")
-                    else:
-                        print(p.device + " failed.")
-                        connectedSerial.close()
-
-                    # print("Waiting response from: " + p.device)
-                    # msg = None
-                    # while msg != "ready":
-                    #     msg = self.getDataSerial(connectedSerial)
-                    #     print("Message returned: '" + msg + "'")
-                    #     if msg == "ready":
-                    #         self.serial = connectedSerial
-                    #         print("Arduino Connected.")
-                    #     else:
-                    #         print(p.device + " failed.")
-                    #         connectedSerial.close()
+                    self.attemptConnection(p, baudrate)
                 except SerialException:
                     print(p.device + " timed out.")
                     pass
@@ -88,6 +58,34 @@ class Arduino(object):
                 self.__sendData(pin)
 
         return True
+
+    def attemptConnection(self, p, baudrate):
+        print("Attempting to connect: " + p.device)
+        connectedSerial = serial.Serial(p.device, baudrate, timeout=1, write_timeout=1)
+        print("Attempting handshake with: " + p.device)
+
+        time.sleep(0.1)
+        # first clear everything in the buffer
+        connectedSerial.flushInput()
+        connectedSerial.flushOutput()
+        # then write data
+        connectedSerial.write(b'97')
+
+        # print("Preliminary message received: " + self.getDataSerial(connectedSerial))
+
+        msg = self.getDataSerial(connectedSerial)
+
+        #print("Response received: (" + msg + ")")
+
+        if msg == "ready":
+            connectedSerial.write(b'98')
+            print("Response received from: " + p.device)
+            self.serial = connectedSerial
+            print("Arduino Connected.")
+        else:
+            print(msg)
+            print(p.device + " failed.")
+            connectedSerial.close()
 
     def setLow(self, pin):
         self.__sendData('0')

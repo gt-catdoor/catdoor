@@ -9,7 +9,7 @@ import numpy as np
 import tensorflow as tf
 import cv2
 import pyscreenshot as ImageGrab
-from tkinter import Tk, Label, Button, StringVar, IntVar, Entry, PhotoImage, Frame
+from tkinter import Tk, Label, Button, StringVar, IntVar, Entry, PhotoImage, Frame, OptionMenu
 import threading
 from PIL import Image
 from PIL import ImageTk
@@ -19,7 +19,7 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-# import Server as sv
+import Server as sv
 
 # # Use the application default credentials
 # cred = credentials.ApplicationDefault()
@@ -64,6 +64,7 @@ class gui:
 		doc_watch = doc_ref.on_snapshot(self.on_snapshot)
 
 
+
 		## logo
 		# w = Label(w, image=photo)
 		# w.grid(row=0, column=1)
@@ -75,10 +76,22 @@ class gui:
 
 
 		f1 = Frame(w, borderwidth=2, relief="groove")
-		f1.grid(row = 2, column=0, columnspan=4, sticky="EWNS")
+		f1.grid(row = 2, column=0, columnspan=2, sticky="EWNS")
 		delay_after_cat_label = Label(f1, text = "Unlock Duration").grid(row=0,column=0, ipadx = 10, ipady = 10)
 		delay_after_cat_Entry =  Entry(f1, textvariable = self.delay_after_cat).grid(row=0,column=1)
+		self.f1 = f1
 		self.delay_after_cat.set(5)
+
+		f2 = Frame(w, borderwidth=2, relief="groove")
+		f2.grid(row = 2, column=2, columnspan=2, sticky="EWNS")
+		cam_id_label = Label(f2, text = "Camera Id").grid(row=0,column=0, ipadx = 10, ipady = 10)
+
+		optionList = (0, 1)
+		self.camid = IntVar()
+		self.camid.set(optionList[1])
+		cam_id_menu = OptionMenu(f2, self.camid, *optionList)
+		cam_id_menu.grid(row=0, column=1,ipadx = 10, ipady = 10)
+		self.f2 = f2
 
 		start_vision_label = Label(w, text = "Start Detection!: ",borderwidth=2, relief="groove").grid(row = 3, column = 0, columnspan = 2, sticky="EWNS")
 		start_vision_button = Button(w, text="Start", command = self.updateinit,borderwidth=2, relief="groove").grid(row=3,column=2, columnspan=1,ipady = 10,sticky="EWNS")
@@ -105,11 +118,16 @@ class gui:
 			self.input_std = 255
 			self.graph = self.load_graph(model_file)
 
-			self.cap = cv2.VideoCapture(0)
+			self.cap = cv2.VideoCapture(self.camid.get())
 			self.cap.set(cv2.CAP_PROP_FPS, 1) 
 			self.current_label = ""
 			self.new_label = ""
 
+			
+			self.delay_after_cat = self.delay_after_cat.get()
+			
+			self.f1.destroy()
+			self.f2.destroy()
 
 			self.SERVERSTATE = self.doc_ref.get().get(STATUS)
 			# print(serverdata)
@@ -118,9 +136,9 @@ class gui:
 			else:
 				self.LOCALSTATE = LOCKDOWN
 
-			# if self.changedoor:
-			# 	sv.doorLock(self.LOCALSTATE)
-			# 	self.changedoor = False
+			if self.changedoor:
+				sv.doorLock(self.LOCALSTATE)
+				self.changedoor = False
 
 
 			input_name = "import/" + input_layer
@@ -252,7 +270,7 @@ class gui:
 						print ("updating : nothing detected")	
 					
 			if self.changedoor:
-				# sv.doorLock(doc[self.LOCALSTATE])
+				sv.doorLock(self.LOCALSTATE)
 				print("door status changed: Server: " + self.SERVERSTATE + "// Local: " + self.LOCALSTATE)
 				self.changedoor = False
 
@@ -276,6 +294,7 @@ class gui:
 			self.cap.release()
 			cv2.destroyAllWindows()
 			self.alreadyrunning = False
+			self.w.destroy()
 
 
 	def load_graph(self, model_file):
@@ -305,7 +324,6 @@ class gui:
 			## changedoor should not True when cat is just dtected and door is opened.
 			## we should seperate on_snapshot change from a snapshot caused by a door's recognition against a 
 			## snapshot of user's app.
-			# sv.doorLock(doc[STATUS])
 			state = doc[STATUS]
 			if self.SERVERSTATE != state:
 				self.SERVERSTATE = state
