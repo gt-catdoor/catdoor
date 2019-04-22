@@ -117,7 +117,7 @@ To connect arduino:
 3). connect the black wire from servo to GND
 4). connect the arduino to the computer via USB
 
-![how to connect arduino](AppInstallationImages/IMG_0695.jpg)
+![how to connect arduino](https://github.com/gt-catdoor/catdoor/blob/master/AppInstallationImages/IMG_0695.jpg)
 ```
 
 To install the cat door:
